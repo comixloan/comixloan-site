@@ -3,7 +3,7 @@ package tk.comixloan.model;
 import javax.persistence.*;
 
 @Entity
-public class Albo {
+public class Volume {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,20 +22,18 @@ public class Albo {
 	@Column(nullable = true, length = 2000)
 	private String description;
 	
-	public Albo() {}
+	public Volume() {}
 
-	public Albo(Long id, Long vol, Double price, Serie serie) {
+	public Volume(Long vol, Double price, Serie serie) {
 		super();
-		this.id = id;
 		this.vol = vol;
 		this.price = price;
 		this.serie = serie;
 		this.description = null;
 	}
 	
-	public Albo(Long id, Long vol, Double price, Serie serie, String description) {
+	public Volume(Long vol, Double price, Serie serie, String description) {
 		super();
-		this.id = id;
 		this.vol = vol;
 		this.price = price;
 		this.serie = serie;
