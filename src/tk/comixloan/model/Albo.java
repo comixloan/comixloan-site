@@ -18,6 +18,9 @@ public class Albo {
 	@Column(nullable = false)
 	@ManyToOne
 	private Serie serie;
+	
+	@Column(nullable = true, length = 2000)
+	private String description;
 
 	public Albo(Long id, Long vol, Double price, Serie serie) {
 		super();
@@ -25,6 +28,16 @@ public class Albo {
 		this.vol = vol;
 		this.price = price;
 		this.serie = serie;
+		this.description = null;
+	}
+	
+	public Albo(Long id, Long vol, Double price, Serie serie, String description) {
+		super();
+		this.id = id;
+		this.vol = vol;
+		this.price = price;
+		this.serie = serie;
+		this.description = description;
 	}
 
 	public Long getId() {
@@ -57,5 +70,13 @@ public class Albo {
 
 	public void setSerie(Serie serie) {
 		this.serie = serie;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
