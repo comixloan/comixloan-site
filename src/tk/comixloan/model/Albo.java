@@ -21,6 +21,8 @@ public class Albo {
 	
 	@Column(nullable = true, length = 2000)
 	private String description;
+	
+	public Albo() {}
 
 	public Albo(Long id, Long vol, Double price, Serie serie) {
 		super();
