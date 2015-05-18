@@ -23,33 +23,34 @@ public class CommunityFacade {
 	public Community create(User user, String name, String description){
 		Community c = new Community(name, description);
 		c.setAdmin(user);
-		em.persist(c);
+		this.addUser(c, user);
 		return c;
 	} 
 	
-	public Community addUser(Long id, User user){
-		Community c = em.find( Community.class, id);
+	public Community addUser(Community c, User user){
 		List<User> users = c.getUsers();
 		if (users == null)
 			users = new LinkedList<User>();
 		users.add(user);
-		
-		List<Community> lc = user.getCommunities();
-		if (lc == null)
-			lc = new LinkedList<Community>();
-		lc.add(c);
-		
-		user.setCommunities(lc);
 		c.setUsers(users);
+		
 		em.persist(c);
 		return c;
 	}
 	
-	public Community addUser(Community c, User user){
-		return this.addUser(c.getId(), user);
-	}
-	
 	public Community get(Long id){
 		return em.find(Community.class, id);
+	}
+	
+	public void delete(Community c){
+		for(User u: c.getUsers()){
+			deleteUser(c, u);
+		}
+	}
+	
+	public void deleteUser(Community c, User u){
+		List<User> l = c.getUsers();
+		l.remove(u);
+		em.persist(c);
 	}
 }
