@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import tk.comixloan.facade.*;
 import tk.comixloan.model.User;
 
-@ManagedBean
+@ManagedBean(name = "comixloanController")
 @SessionScoped
 public class ComiXloanController {
 	
