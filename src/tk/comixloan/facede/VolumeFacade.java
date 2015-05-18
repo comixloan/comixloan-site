@@ -1,18 +1,9 @@
 package tk.comixloan.facede;
 
-import java.util.List;
-
+import java.util.Date;
 import javax.ejb.Stateless;
-import javax.persistence.Column;
 import javax.persistence.EntityManager;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.PersistenceContext;
-
-import tk.comixloan.model.HistoryLoan;
 import tk.comixloan.model.Loan;
 import tk.comixloan.model.Serie;
 import tk.comixloan.model.User;
@@ -29,13 +20,27 @@ public class VolumeFacade {
 	}
 	
 	//da finire i collegamenti con utente e con serie 
-	public Volume createVolume(Long vol,Double price,String description,User user,Serie serie){
+	public Volume createVolume(Long vol,Double price,String description,Serie serie,User user){
 		
-		Volume v= new Volume(vol, price, serie, user);
-		em.persist(v);
+		Volume v= new Volume(vol, price, serie,description,user);
+		UserFacade uf= new UserFacade(em);
+		uf.addVolumes(user, v);
+		
 		return v;
 		
+	}
+	
+	public void setCurrentLoan(Loan l, Volume v){
+		v.setLoan(l);
+		em.persist(v);
 		
+		new LoanFacade(em).addVolume(l, v);
+	}
+	
+	public Loan setCurrentLoan(Volume v, User u){
+		Loan l = new LoanFacade(em).create(new Date(), u);
+		this.setCurrentLoan(l, v);
+		return l;
 	}
 
 }

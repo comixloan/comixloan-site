@@ -35,13 +35,12 @@ public class Volume {
 	
 	public Volume() {}
 
-	public Volume(Long vol, Double price, Serie serie, User user) {
+	public Volume(Long vol, Double price, Serie serie) {
 		super();
 		this.vol = vol;
 		this.price = price;
 		this.serie = serie;
 		this.description = null;
-		this.user = user;
 	}
 	
 	public Volume(Long vol, Double price, Serie serie, String description, User user) {

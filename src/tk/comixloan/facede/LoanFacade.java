@@ -18,6 +18,10 @@ public class LoanFacade {
 	@PersistenceContext(unitName = "comixloan-database")
     private EntityManager em;
 	
+	public LoanFacade(EntityManager em){
+		this.em=em;
+	}
+	
 	public Loan create(Date startDate, User user){
 		Loan hl = new Loan(new LinkedList<Volume>(), startDate, user);
 		em.persist(hl);
