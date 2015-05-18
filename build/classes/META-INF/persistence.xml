@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="comixloan-database" transaction-type="JTA">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-		<jta-data-source>PostgreSQL Database</jta-data-source>
+		<jta-data-source>comiCloan Database</jta-data-source>
  	<!--  	<non-jta-data-source>PostgreSQL Database</non-jta-data-source> -->
 		<class>tk.comixloan.Community</class>
 		<class>tk.comixloan.HistoryLoan</class>
