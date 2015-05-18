@@ -6,16 +6,17 @@
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<jta-data-source>comiCloan Database</jta-data-source>
  	<!--  	<non-jta-data-source>PostgreSQL Database</non-jta-data-source> -->
-		<class>tk.comixloan.Community</class>
-		<class>tk.comixloan.HistoryLoan</class>
-		<class>tk.comixloan.Loan</class>
-		<class>tk.comixloan.Serie</class>
-		<class>tk.comixloan.User</class>
-		<class>tk.comixloan.Volume</class>
+		<class>tk.comixloan.model.Community</class>
+		<class>tk.comixloan.model.HistoryLoan</class>
+		<class>tk.comixloan.model.Loan</class>
+		<class>tk.comixloan.model.Serie</class>
+		<class>tk.comixloan.model.User</class>
+		<class>tk.comixloan.model.Volume</class>
 		<properties>
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=add,ForeignKeys=true)" /> 
 			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
   			<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/>
+			<property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
 		</properties>
 	</persistence-unit>
 </persistence>
