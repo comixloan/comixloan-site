@@ -2,11 +2,7 @@ package tk.comixloan.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Serie {
@@ -23,6 +19,7 @@ public class Serie {
 	private String description;
 	
 	@Column
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	
 	@Column(nullable=false)
