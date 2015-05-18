@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -40,7 +41,10 @@ public class User {
 	@OneToMany
 	private List<Loan> loans;
 
+	@ManyToMany
+	private List<Community> communities;
 	
+	public User(){}
 	
 	public User(String name, String surName, String email, String password,
 			String userName) {
@@ -98,6 +102,38 @@ public class User {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public List<Volume> getVolumes() {
+		return volumes;
+	}
+
+	public void setVolumes(List<Volume> volumes) {
+		this.volumes = volumes;
+	}
+
+	public List<HistoryLoan> getHistoriesLoan() {
+		return historiesLoan;
+	}
+
+	public void setHistoriesLoan(List<HistoryLoan> historiesLoan) {
+		this.historiesLoan = historiesLoan;
+	}
+
+	public List<Loan> getLoans() {
+		return loans;
+	}
+
+	public void setLoans(List<Loan> loans) {
+		this.loans = loans;
+	}
+
+	public List<Community> getCommunities() {
+		return communities;
+	}
+
+	public void setCommunities(List<Community> communities) {
+		this.communities = communities;
 	}
 	
 	
