@@ -1,6 +1,7 @@
 package tk.comixloan.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +29,7 @@ public class Serie {
 	@Column(nullable=false)
 	private String editor;
 	
-	@Column 
+	@Column(nullable = true) 
 	private String author;
 
 	

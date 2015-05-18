@@ -1,5 +1,7 @@
 package tk.comixloan.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +23,9 @@ public class Volume {
 	
 	@Column(nullable = true, length = 2000)
 	private String description;
+	
+	@ManyToMany
+	private List<HistoryLoan> loanHistory;
 	
 	public Volume() {}
 
