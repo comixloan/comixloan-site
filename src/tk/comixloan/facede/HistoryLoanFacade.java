@@ -19,6 +19,8 @@ public class HistoryLoanFacade {
 	public HistoryLoan create(Loan loan){
 		HistoryLoan hl = new HistoryLoan(loan);
 		em.persist(hl);
+		
+		new UserFacade(em).addHistoryLoan(loan.getUser(), hl);
 		return hl;
 	}
 	

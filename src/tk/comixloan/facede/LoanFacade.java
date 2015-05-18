@@ -22,6 +22,8 @@ public class LoanFacade {
 	public Loan create(Date startDate, User user){
 		Loan hl = new Loan(new LinkedList<Volume>(), startDate, user);
 		em.persist(hl);
+		
+		new UserFacade(em).addLoan(user, hl);
 		return hl;
 	}
 	
