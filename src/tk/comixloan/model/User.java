@@ -2,6 +2,7 @@ package tk.comixloan.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,16 +33,16 @@ public class User {
 	@Column(nullable=false)
 	private String userName;
 	
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Volume> volumes;
 	
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL})
 	private List<HistoryLoan> historiesLoan;
 	
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Loan> loans;
 
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.ALL})
 	private List<Community> communities;
 	
 	public User(){}
