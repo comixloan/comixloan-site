@@ -49,12 +49,19 @@ public class UserFacade {
     }
     
     public User findByEmailPassword(String email, String password) throws NoSuchAlgorithmException{
-    	TypedQuery<User> q = em.createQuery("SELECT u FROM User u WHERE (userName = :user OR email = :email) AND password = : pwd", User.class);
+    	TypedQuery<User> q = em.createQuery("SELECT u FROM User u WHERE (u.userName = :user OR u.email = :email) AND u.password = : pwd", User.class);
     	q.setParameter("user", email);
     	q.setParameter("email", email);
     	q.setParameter("pwd", sha256(password));
     	
     	return q.getSingleResult();
+    }
+    
+    public boolean existsUser(String email, String username){
+    	TypedQuery<User> q = em.createQuery("SELECT u FROM User u WHERE (u.userName = :user OR u.email = :email)", User.class);
+    	q.setParameter("user", username);
+    	q.setParameter("email", email);
+    	return q.getResultList().size() != 0;
     }
     
     public void addCommunity(User u,Community c){
