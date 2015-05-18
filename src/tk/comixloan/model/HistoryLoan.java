@@ -1,6 +1,7 @@
 package tk.comixloan.model;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -23,12 +24,33 @@ public class HistoryLoan {
 	@Column(nullable = false)
 	@ManyToMany(mappedBy = "loanHistory")
 	private List<Volume> volumes;
+	
+	@ManyToOne
+	private User user;
+	
+	public HistoryLoan(){}
 
-	public HistoryLoan(Date dateStart, Date dateEnd, List<Volume> volumes) {
+	public HistoryLoan(Date dateStart, Date dateEnd, List<Volume> volumes, User user) {
 		super();
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.volumes = volumes;
+		this.user = user;
+	}
+	
+	public HistoryLoan(Loan loan){
+		this.user = loan.getUser();
+		this.dateStart = loan.getStartDate();
+		this.dateEnd = new Date();
+		this.volumes = new LinkedList<>(loan.getVolumes());
+	}
+	
+	public HistoryLoan(Date dateStart, List<Volume> volumes, User user) {
+		super();
+		this.dateStart = dateStart;
+		this.dateEnd = new Date();
+		this.volumes = volumes;
+		this.user = user;
 	}
 
 	public Long getId() {
@@ -63,5 +85,11 @@ public class HistoryLoan {
 		this.volumes = volumes;
 	}
 	
+	public User getUser() {
+		return user;
+	}
 	
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

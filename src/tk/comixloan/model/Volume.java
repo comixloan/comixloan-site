@@ -30,22 +30,27 @@ public class Volume {
 	@ManyToOne
 	private Loan loan;
 	
+	@ManyToOne
+	private User user;
+	
 	public Volume() {}
 
-	public Volume(Long vol, Double price, Serie serie) {
+	public Volume(Long vol, Double price, Serie serie, User user) {
 		super();
 		this.vol = vol;
 		this.price = price;
 		this.serie = serie;
 		this.description = null;
+		this.user = user;
 	}
 	
-	public Volume(Long vol, Double price, Serie serie, String description) {
+	public Volume(Long vol, Double price, Serie serie, String description, User user) {
 		super();
 		this.vol = vol;
 		this.price = price;
 		this.serie = serie;
 		this.description = description;
+		this.user = user;
 	}
 
 	public Long getId() {
@@ -102,5 +107,13 @@ public class Volume {
 	
 	public void setLoanHistory(List<HistoryLoan> loanHistory) {
 		this.loanHistory = loanHistory;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

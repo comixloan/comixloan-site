@@ -18,11 +18,24 @@ public class Loan {
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startDate;
+	
+	@ManyToOne
+	private User user;
+	
+	public Loan(){}
 
-	public Loan(List<Volume> volumes, Date startDate) {
+	public Loan(List<Volume> volumes, Date startDate, User user) {
 		super();
 		this.volumes = volumes;
 		this.startDate = startDate;
+		this.user = user;
+	}
+	
+	public Loan(List<Volume> volumes, User user) {
+		super();
+		this.volumes = volumes;
+		this.startDate = new Date();
+		this.user = user;
 	}
 
 	public Id getId() {
@@ -49,6 +62,12 @@ public class Loan {
 		this.startDate = startDate;
 	}
 	
+	public User getUser() {
+		return user;
+	}
 	
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 }
