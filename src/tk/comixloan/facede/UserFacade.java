@@ -77,5 +77,12 @@ public class UserFacade {
     public User getUser(Long id){
     	return em.find(User.class,id);
     }
-
+    
+    public void delete(User u){
+    	em.remove(u);
+    }
+    
+    public void delete(Long id){
+    	delete(this.getUser(id));
+    }
 }
