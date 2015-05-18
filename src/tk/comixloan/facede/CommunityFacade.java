@@ -34,6 +34,7 @@ public class CommunityFacade {
 		users.add(user);
 		c.setUsers(users);
 		
+		new UserFacade(em).addCommunity(user, c);		
 		em.persist(c);
 		return c;
 	}
