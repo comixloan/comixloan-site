@@ -9,6 +9,26 @@ Il sistema prevede che un utente, una volta acceduto possa:
 3. confermare la restituzione di uno o più albi da parte di un utente.
 
 Altre specifiche saranno approfondite nel diagramma delle classi Software.
+
+## Configurazione Database
+
+Creare in WebContent/WEB-INF questo file resources.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+<Resource id="comiCloan Database" type="DataSource">
+JdbcDriver  	 	org.postgresql.Driver
+JdbcUrl  			jdbc:postgresql://localhost/products
+UserName     		postgres
+Password     		siw
+JtaManaged      	true
+DefaultAutoCommit   false
+</Resource>
+</tomee>
+
+```
+
 ## Link Utili
 
 DEMO: [http://comixloan.tk/](http://comixloan.tk/)
