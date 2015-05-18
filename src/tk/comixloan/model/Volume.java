@@ -27,6 +27,9 @@ public class Volume {
 	@ManyToMany
 	private List<HistoryLoan> loanHistory;
 	
+	@ManyToOne
+	private Loan loan;
+	
 	public Volume() {}
 
 	public Volume(Long vol, Double price, Serie serie) {
@@ -83,5 +86,21 @@ public class Volume {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public Loan getLoan() {
+		return loan;
+	}
+	
+	public void setLoan(Loan loan) {
+		this.loan = loan;
+	}
+	
+	public List<HistoryLoan> getLoanHistory() {
+		return loanHistory;
+	}
+	
+	public void setLoanHistory(List<HistoryLoan> loanHistory) {
+		this.loanHistory = loanHistory;
 	}
 }
