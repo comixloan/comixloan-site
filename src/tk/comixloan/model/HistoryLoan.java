@@ -42,7 +42,7 @@ public class HistoryLoan {
 		this.user = loan.getUser();
 		this.dateStart = loan.getStartDate();
 		this.dateEnd = new Date();
-		this.volumes = new LinkedList<>(loan.getVolumes());
+		this.volumes = new LinkedList<Volume>(loan.getVolumes());
 	}
 	
 	public HistoryLoan(Date dateStart, List<Volume> volumes, User user) {
