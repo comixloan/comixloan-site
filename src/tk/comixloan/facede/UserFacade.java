@@ -1,5 +1,7 @@
 package tk.comixloan.facede;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,8 +25,23 @@ public class UserFacade {
     public UserFacade(EntityManager em){
     	this.em = em;
     }
+    
+    private String sha256(String pwd) throws NoSuchAlgorithmException{
+    	MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(pwd.getBytes());
+ 
+        byte byteData[] = md.digest();
+ 
+        //convert the byte to hex format method 1
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
+    }
 
-    public User createUser(String name,String surName,String email, String password, String userName){
+    public User createUser(String name,String surName,String email, String password, String userName) throws NoSuchAlgorithmException{
+    	password = sha256(password);
     	User user = new User(name, surName, email, password, userName);
     	em.persist(user);
     	return user;
