@@ -10,7 +10,7 @@ public class Loan {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Id id;
+	private Long id;
 	
 	@OneToMany
 	private List<Volume> volumes;
@@ -38,11 +38,11 @@ public class Loan {
 		this.user = user;
 	}
 
-	public Id getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Id id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

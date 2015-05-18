@@ -16,7 +16,7 @@ public class Community {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Id id;
+	private Long id;
 	
 	@Column(nullable=false)
 	private String name;
@@ -39,11 +39,11 @@ public class Community {
 	}
 	
 	
-	public Id getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Id id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -63,5 +63,19 @@ public class Community {
 		this.description = description;
 	} 
 	
+	public User getAdmin() {
+		return admin;
+	}
 	
+	public List<User> getUsers() {
+		return users;
+	}
+	
+	public void setAdmin(User admin) {
+		this.admin = admin;
+	}
+	
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 }
