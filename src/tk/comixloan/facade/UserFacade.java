@@ -23,6 +23,8 @@ public class UserFacade {
     @PersistenceContext(unitName = "comixloan-database")
     private EntityManager em;
     
+    public UserFacade(){}
+    
     public UserFacade(EntityManager em){
     	this.em = em;
     }

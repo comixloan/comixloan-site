@@ -15,6 +15,8 @@ public class CommunityFacade {
 	@PersistenceContext(unitName = "comixloan-database")
     private EntityManager em;
 
+	public CommunityFacade(){}
+	
 	public CommunityFacade(EntityManager em) {
 		super();
 		this.em = em;

@@ -16,6 +16,8 @@ public class HistoryLoanFacade {
 	@PersistenceContext(unitName = "comixloan-database")
     private EntityManager em;
 	
+	public HistoryLoanFacade(){}
+	
 	public HistoryLoan create(Loan loan){
 		HistoryLoan hl = new HistoryLoan(loan);
 		em.persist(hl);

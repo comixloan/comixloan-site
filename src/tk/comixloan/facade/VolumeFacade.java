@@ -15,6 +15,8 @@ public class VolumeFacade {
 	@PersistenceContext(unitName = "comixloan-database")
     private EntityManager em;
 	
+	public VolumeFacade(){}
+	
 	public VolumeFacade(EntityManager em){
 		this.em=em;
 	}

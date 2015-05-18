@@ -19,6 +19,8 @@ public class SerieFacade {
 	@PersistenceContext(unitName = "comixloan-database")
 	private EntityManager em;
 	
+	public SerieFacade(){}
+	
 	public SerieFacade(EntityManager em){this.em=em;}
 	
 
