@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import tk.comixloan.model.Community;
 import tk.comixloan.model.HistoryLoan;
@@ -45,6 +46,15 @@ public class UserFacade {
     	User user = new User(name, surName, email, password, userName);
     	em.persist(user);
     	return user;
+    }
+    
+    public User findByEmailPassword(String email, String password) throws NoSuchAlgorithmException{
+    	TypedQuery<User> q = em.createQuery("SELECT u FROM User u WHERE (userName = :user OR email = :email) AND password = : pwd", User.class);
+    	q.setParameter("user", email);
+    	q.setParameter("email", email);
+    	q.setParameter("pwd", sha256(password));
+    	
+    	return q.getSingleResult();
     }
     
     public void addCommunity(User u,Community c){
