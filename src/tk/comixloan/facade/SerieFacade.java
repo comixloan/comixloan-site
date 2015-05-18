@@ -1,4 +1,4 @@
-package tk.comixloan.facede;
+package tk.comixloan.facade;
 
 import java.util.Date;
 import java.util.List;
@@ -20,7 +20,6 @@ public class SerieFacade {
 	private EntityManager em;
 	
 	public SerieFacade(EntityManager em){this.em=em;}
-	
 	
 
 	public Serie createSerie(String name,String description, Date date,String editor, String author){

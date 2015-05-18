@@ -1,4 +1,4 @@
-package tk.comixloan.facede;
+package tk.comixloan.facade;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

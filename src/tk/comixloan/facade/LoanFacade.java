@@ -1,4 +1,4 @@
-package tk.comixloan.facede;
+package tk.comixloan.facade;
 
 import java.util.Date;
 import java.util.LinkedList;
