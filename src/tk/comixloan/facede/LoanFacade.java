@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import tk.comixloan.model.HistoryLoan;
 import tk.comixloan.model.Loan;
 import tk.comixloan.model.User;
 import tk.comixloan.model.Volume;
