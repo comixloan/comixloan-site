@@ -2,17 +2,19 @@ package tk.comixloan.controller;
 
 import java.security.NoSuchAlgorithmException;
 
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import tk.comixloan.facade.*;
 import tk.comixloan.model.User;
 
 @ManagedBean(name = "comixloanController")
 @SessionScoped
-public class ComiXloanController {
-	
+public class ComiXloanController{
+
 	@EJB
 	private CommunityFacade communityFacade;
 	
@@ -32,6 +34,8 @@ public class ComiXloanController {
 	private String name;
 	private String surname;
 	private String email;
+	
+	@ManagedProperty("#{currentUser}")
 	private User currentUser = null;
 	
 	@EJB
@@ -104,5 +108,9 @@ public class ComiXloanController {
 	
 	public User getCurrentUser() {
 		return currentUser;
+	}
+	
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
 	}
 }
