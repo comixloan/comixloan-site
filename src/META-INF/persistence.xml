@@ -5,7 +5,6 @@
 	<persistence-unit name="comixloan-database" transaction-type="JTA">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<jta-data-source>comiCloan Database</jta-data-source>
- 	<!--  	<non-jta-data-source>PostgreSQL Database</non-jta-data-source> -->
 		<class>tk.comixloan.model.Community</class>
 		<class>tk.comixloan.model.HistoryLoan</class>
 		<class>tk.comixloan.model.Loan</class>
@@ -17,7 +16,33 @@
 			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
   			<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/>
 			<property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
+			
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> 
+			<property name="javax.persistence.schema-generation.create-database-schemas" value="true"/> 
 		</properties>
 	</persistence-unit>
+	
+<!-- 	<persistence-unit name="comixloan-database" transaction-type="RESOURCE_LOCAL"> -->
+<!-- 		<class>tk.comixloan.model.Community</class> -->
+<!-- 		<class>tk.comixloan.model.HistoryLoan</class> -->
+<!-- 		<class>tk.comixloan.model.Loan</class> -->
+<!-- 		<class>tk.comixloan.model.Serie</class> -->
+<!-- 		<class>tk.comixloan.model.User</class> -->
+<!-- 		<class>tk.comixloan.model.Volume</class> -->
+<!-- 		<properties> -->
+<!-- 			<property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" /> -->
+<!-- 			<property name="openjpa.ConnectionUserName" value="postgres" /> -->
+<!-- 			<property name="openjpa.ConnectionPassword" value="postgres" /> -->
+<!-- 			<property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost/siw" /> -->
+<!-- 			<property name="openjpa.jdbc.DBDictionary" value="postgres" /> -->
+<!--   			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=add,ForeignKeys=true)" />  -->
+<!-- 			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/> -->
+<!--   			<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/> -->
+			
+<!-- 			<property name="openjpa.RuntimeUnenhancedClasses" value="supported"/> -->
+			
+			
+<!-- 		</properties> -->
+<!-- 	</persistence-unit> -->
 </persistence>
           

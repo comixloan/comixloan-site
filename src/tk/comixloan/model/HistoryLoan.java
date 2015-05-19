@@ -21,7 +21,7 @@ public class HistoryLoan {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateEnd;
 	
-	@Column(nullable = false)
+	
 	@ManyToMany(mappedBy = "loanHistory")
 	private List<Volume> volumes;
 	

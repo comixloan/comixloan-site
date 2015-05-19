@@ -101,5 +101,8 @@ public class ComiXloanController {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
+	public User getCurrentUser() {
+		return currentUser;
+	}
 }
