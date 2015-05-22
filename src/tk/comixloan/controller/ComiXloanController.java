@@ -2,21 +2,17 @@ package tk.comixloan.controller;
 
 import java.security.NoSuchAlgorithmException;
 
-
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 
 import tk.comixloan.facade.*;
-import tk.comixloan.model.User;
 
 @ManagedBean(name = "comixloanController")
 @SessionScoped
-public class ComiXloanController{
+public class ComiXloanController extends AbstractSessionController{
 
-	@EJB
-	private CommunityFacade communityFacade;
+	
 	
 	@EJB
 	private HistoryLoanFacade historyFacade;
@@ -27,37 +23,45 @@ public class ComiXloanController{
 	@EJB
 	private SerieFacade serieFacade;
 	
-	@EJB
-	private UserFacade userFacade;
+	
 	private String userName;
 	private String passWord;
 	private String name;
 	private String surname;
 	private String email;
 	
-	@ManagedProperty("#{currentUser}")
-	private User currentUser = null;
-	
 	@EJB
 	private VolumeFacade volumeFacade;
+	
+	
+	public String home(){
+		return "home";
+	}
 
 	public String logIn() throws NoSuchAlgorithmException{
-		this.currentUser = userFacade.findByEmailPassword(email, passWord);
-		if(this.currentUser==null){
-			return "errorLogIn";	
+		this.setCurrentUser(this.getUserFacade().findByEmailPassword(email, passWord));
+		if(this.getCurrentUser() == null){
+			return "error/login";	
 		}
 		else 
 			return "home";
 	}
 	
 	public String signIn() throws NoSuchAlgorithmException{
-		if (this.userFacade.existsUser(email, userName))
-			return "errorSignIn";
+		if (this.getUserFacade().existsUser(email, userName))
+			return "error/signin";
 		else{
-			this.currentUser = this.userFacade.createUser(name, surname, email, passWord, userName);
+			this.setCurrentUser(this.getUserFacade().createUser(name, surname, email, passWord, userName));
 			return "home";
 		}
 	}
+	
+	public String createCommunity(){
+		
+		
+		return null;
+	}
+	
 	
 	/*
 	 * --------------------------------------
@@ -65,6 +69,9 @@ public class ComiXloanController{
 	 * --------------------------------------
 	 * 
 	 */
+	
+	
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -105,11 +112,5 @@ public class ComiXloanController{
 		this.email = email;
 	}
 	
-	public User getCurrentUser() {
-		return currentUser;
-	}
-	
-	public void setCurrentUser(User currentUser) {
-		this.currentUser = currentUser;
-	}
+
 }

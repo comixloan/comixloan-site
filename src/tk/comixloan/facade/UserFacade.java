@@ -65,6 +65,17 @@ public class UserFacade {
     	
     }
     
+    public User findByUsername(String username){
+    	TypedQuery<User> q = em.createQuery("SELECT u FROM User u WHERE u.userName = :user", User.class);
+    	q.setParameter("user", username);
+    	
+    	try{
+    		return q.getSingleResult();
+    	}catch(NoResultException ex){
+    		return null; 
+    	}
+    }
+    
     public boolean existsUser(String email, String username){
     	TypedQuery<User> q = em.createQuery("SELECT u FROM User u WHERE (u.userName = :user OR u.email = :email)", User.class);
     	q.setParameter("user", username);

@@ -22,12 +22,19 @@ public class CommunityFacade {
 		this.em = em;
 	}
 	
-	public Community create(User user, String name, String description){
+	public Community create(Long idUser, String name, String description){
+		User user = em.find(User.class, idUser);
 		Community c = new Community(name, description);
 		c.setAdmin(user);
 		this.addUser(c, user);
 		return c;
 	} 
+	
+	public Community addUser(Long idCommunity, Long idUser){
+		UserFacade userFacade = new UserFacade(this.em);
+		
+		return this.addUser(this.get(idCommunity), userFacade.getUser(idUser));
+	}
 	
 	public Community addUser(Community c, User user){
 		List<User> users = c.getUsers();
