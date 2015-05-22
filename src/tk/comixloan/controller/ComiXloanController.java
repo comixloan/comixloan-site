@@ -65,7 +65,6 @@ public class ComiXloanController{
 	 * --------------------------------------
 	 * 
 	 */
-
 	public String getUserName() {
 		return userName;
 	}
