@@ -10,9 +10,9 @@
 <body>
 <f:view>
 	<h:form>
-    	<div>Username: <h:inputText value="#{comixloanController.username}"/></div>
+    	<div>Username: <h:inputText value="#{communityController.username}"/></div>
     	
-    	<div><h:commandButton value="Login"  action="#{comixloanController.logIn}"/></div>
+    	<div><h:commandButton value="Aggiungi"  action="#{communityController.addUser}"/></div>
 	</h:form>
 </f:view>
 </body>

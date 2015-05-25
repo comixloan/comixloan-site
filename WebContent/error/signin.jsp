@@ -14,10 +14,10 @@
 	<h:form>
     	<div>Email: <h:inputText value="#{comixloanController.email}"/></div>
     	<div>Password: <h:inputText value="#{comixloanController.passWord}"/></div>
-    	<div>Username: <h:inputText value="#{comixloanController.username}"/></div>
+    	<div>Username: <h:inputText value="#{comixloanController.userName}"/></div>
     	<div>Nome: <h:inputText value="#{comixloanController.name}"/></div>
     	<div>Cognome: <h:inputText value="#{comixloanController.surname}"/></div>
-    	<div><h:commandButton value="Registra"  action="#{comixloanController.singIn}"/></div>
+    	<div><h:commandButton value="Registra"  action="#{comixloanController.signIn}"/></div>
 	</h:form>
 </f:view>
 </body>
