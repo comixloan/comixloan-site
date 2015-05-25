@@ -40,6 +40,13 @@ public class CommunityController extends AbstractSessionController {
 	public String addUser(){
 		return null;
 	}
+	
+	/*
+	 * --------------------------------------
+	 * QUI INIZIANO I GETTTER E I SETTER
+	 * --------------------------------------
+	 * 
+	 */
 
 	public String getName() {
 		return name;
