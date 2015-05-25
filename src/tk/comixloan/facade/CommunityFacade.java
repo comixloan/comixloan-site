@@ -30,37 +30,60 @@ public class CommunityFacade {
 		return c;
 	} 
 	
-	public Community addUser(Long idCommunity, Long idUser){
+	public boolean addUser(Long idCommunity, Long idUser){
 		UserFacade userFacade = new UserFacade(this.em);
 		
 		return this.addUser(this.get(idCommunity), userFacade.getUser(idUser));
 	}
 	
-	public Community addUser(Community c, User user){
+	public boolean addUser(Community c, User user){
 		List<User> users = c.getUsers();
 		if (users == null)
 			users = new LinkedList<User>();
 		users.add(user);
 		c.setUsers(users);
 		
-		new UserFacade(em).addCommunity(user, c);		
-		em.persist(c);
-		return c;
+		List<Community> communities= user.getCommunities();
+    	if (communities == null)
+    		communities = new LinkedList<Community>();
+    		
+    	communities.add(c);
+    	user.setCommunities(communities);
+    	try{
+    		em.persist(user);
+    		return true;
+    	}catch(Exception ex){
+    		ex.printStackTrace();
+    		return false;
+    	}
 	}
 	
 	public Community get(Long id){
 		return em.find(Community.class, id);
 	}
 	
-	public void delete(Community c){
-		for(User u: c.getUsers()){
-			deleteUser(c, u);
+	public boolean delete(Community c){
+		try{
+			for(User u: c.getUsers()){
+				deleteUser(c, u);
+			}
+			this.em.remove(c);
+			return true;
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return false;
 		}
 	}
 	
-	public void deleteUser(Community c, User u){
-		List<User> l = c.getUsers();
-		l.remove(u);
-		em.persist(c);
+	public boolean deleteUser(Community c, User u){
+		List<Community> lc = u.getCommunities();
+		lc.remove(c);
+		
+		try{
+			em.persist(u);
+			return true;
+		}catch(Exception ex){
+			return false;
+		}
 	}
 }

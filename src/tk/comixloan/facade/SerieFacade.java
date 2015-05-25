@@ -22,11 +22,17 @@ public class SerieFacade {
 	public SerieFacade(){}
 	
 	public SerieFacade(EntityManager em){this.em=em;}
-	
 
 	public Serie createSerie(String name,String description, Date date,String editor, String author){
 		Serie s=new Serie(name, description, date, editor, author);
-		em.persist(s);
+		
+		try{
+			em.persist(s);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			s = null;
+		}
+		
 		return s;
 	}
 	

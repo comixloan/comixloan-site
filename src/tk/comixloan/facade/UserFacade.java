@@ -47,7 +47,12 @@ public class UserFacade {
     public User createUser(String name,String surName,String email, String password, String userName) throws NoSuchAlgorithmException{
     	password = sha256(password);
     	User user = new User(name, surName, email, password, userName);
-    	em.persist(user);
+    	try{
+    		em.persist(user);
+    	}catch(Exception ex){
+    		ex.printStackTrace();
+    		user = null;
+    	}
     	return user;
     }
     
@@ -80,44 +85,12 @@ public class UserFacade {
     	TypedQuery<User> q = em.createQuery("SELECT u FROM User u WHERE (u.userName = :user OR u.email = :email)", User.class);
     	q.setParameter("user", username);
     	q.setParameter("email", email);
-    	return q.getResultList().size() != 0;
-    }
-    
-    public void addCommunity(User u,Community c){
-    	List<Community> communities= u.getCommunities();
-    	if (communities == null)
-    		communities = new LinkedList<Community>();
-    		
-    	communities.add(c);
-    	u.setCommunities(communities);
-    	em.persist(u);
-    }
-    
-    public void addVolumes(User u,Volume v){
-    	List<Volume> volumes=u.getVolumes();
-    	if (volumes == null)
-    		volumes = new LinkedList<Volume>();
-    	volumes.add(v);
-    	u.setVolumes(volumes);
-    	em.persist(u);
-    }
-    
-    public void addHistoryLoan(User u,HistoryLoan hl){
-    	List<HistoryLoan> historiesLoan = u.getHistoriesLoan();
-    	if (historiesLoan == null)
-    		historiesLoan = new LinkedList<HistoryLoan>();
-		historiesLoan.add(hl);
-		u.setHistoriesLoan(historiesLoan);
-		em.persist(u);
-    }
-    
-    public void addLoan(User u,Loan l){
-    	List<Loan> loans= u.getLoans();
-    	if (loans == null)
-    		loans = new LinkedList<Loan>();
-    	loans.add(l);
-    	u.setLoans(loans);
-    	em.persist(u);
+    	try{
+    		return q.getResultList().size() != 0;
+    	}catch(Exception ex){
+    		ex.printStackTrace();
+    		return true;
+    	}
     }
     
     public User getUser(Long id){

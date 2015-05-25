@@ -23,20 +23,37 @@ public class LoanFacade {
 	}
 	
 	public Loan create(Date startDate, User user){
-		Loan hl = new Loan(new LinkedList<Volume>(), startDate, user);
-		em.persist(hl);
+		Loan l = new Loan(new LinkedList<Volume>(), startDate, user);
 		
-		new UserFacade(em).addLoan(user, hl);
-		return hl;
+		List<Loan> loans= user.getLoans();
+    	if (loans == null)
+    		loans = new LinkedList<Loan>();
+    	loans.add(l);
+    	user.setLoans(loans);
+    	
+    	try{
+    		em.persist(user);
+    		return l;
+    	}catch(Exception ex){
+    		ex.printStackTrace();
+    		return null;
+    	}
 	}
 	
-	public void addVolume(Loan l, Volume v){
+	public boolean addVolume(Loan l, Volume v){
 		List<Volume> lv = l.getVolumes();
 		if (lv == null)
 			lv = new LinkedList<Volume>();
 		lv.add(v);
 		l.setVolumes(lv);
-		em.persist(l);
+		
+		try{
+			em.persist(l);
+			return true;
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return false;
+		}
 	}
 	
 	public Loan find(Long id){
@@ -44,7 +61,12 @@ public class LoanFacade {
 	}
 	
 	public List<Volume> getVolumes(Long id){
-		return this.find(id).getVolumes();
+		try{
+			return this.find(id).getVolumes();
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return null;
+		}
 	}
 	
 	public void delete(Loan hl){

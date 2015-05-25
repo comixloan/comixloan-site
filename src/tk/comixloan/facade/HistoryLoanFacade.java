@@ -1,5 +1,6 @@
 package tk.comixloan.facade;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import tk.comixloan.model.HistoryLoan;
 import tk.comixloan.model.Loan;
+import tk.comixloan.model.User;
 import tk.comixloan.model.Volume;
 
 @Stateless
@@ -20,10 +22,21 @@ public class HistoryLoanFacade {
 	
 	public HistoryLoan create(Loan loan){
 		HistoryLoan hl = new HistoryLoan(loan);
-		em.persist(hl);
 		
-		new UserFacade(em).addHistoryLoan(loan.getUser(), hl);
-		return hl;
+		User user = loan.getUser();
+		List<HistoryLoan> historiesLoan = user.getHistoriesLoan();
+    	if (historiesLoan == null)
+    		historiesLoan = new LinkedList<HistoryLoan>();
+		historiesLoan.add(hl);
+		user.setHistoriesLoan(historiesLoan);
+		
+		try{
+    		em.persist(user);
+    		return hl;
+    	}catch(Exception ex){
+    		ex.printStackTrace();
+    		return null;
+    	}
 	}
 	
 	public HistoryLoan find(Long id){

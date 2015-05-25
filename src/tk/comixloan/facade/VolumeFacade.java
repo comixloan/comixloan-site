@@ -1,6 +1,9 @@
 package tk.comixloan.facade;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,24 +28,40 @@ public class VolumeFacade {
 	public Volume createVolume(Long vol,Double price,String description,Serie serie,User user){
 		
 		Volume v= new Volume(vol, price, serie,description,user);
-		UserFacade uf= new UserFacade(em);
-		uf.addVolumes(user, v);
 		
-		return v;
+		List<Volume> volumes=user.getVolumes();
+    	if (volumes == null)
+    		volumes = new LinkedList<Volume>();
+    	volumes.add(v);
+    	user.setVolumes(volumes);
+    	try{
+    		em.persist(user);
+    		return v;
+    	}catch(Exception ex){
+    		ex.printStackTrace();
+    		return null;
+    	}
 		
 	}
 	
-	public void setCurrentLoan(Loan l, Volume v){
+	public boolean setCurrentLoan(Loan l, Volume v){
 		v.setLoan(l);
-		em.persist(v);
-		
-		new LoanFacade(em).addVolume(l, v);
+		try{
+			em.persist(v);
+			return new LoanFacade(em).addVolume(l, v);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return false;
+		}		
 	}
 	
 	public Loan setCurrentLoan(Volume v, User u){
 		Loan l = new LoanFacade(em).create(new Date(), u);
-		this.setCurrentLoan(l, v);
-		return l;
+		if (l == null || this.setCurrentLoan(l, v)){
+			return null;
+		}else{
+			 return l;
+		}
 	}
 
 }
