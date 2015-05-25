@@ -30,10 +30,10 @@ public class CommunityFacade {
 		return c;
 	} 
 	
-	public boolean addUser(Long idCommunity, Long idUser){
+	public boolean addUser(Long idCommunity, String  username){
 		UserFacade userFacade = new UserFacade(this.em);
 		
-		return this.addUser(this.get(idCommunity), userFacade.getUser(idUser));
+		return this.addUser(this.get(idCommunity), userFacade.findByUsername(username));
 	}
 	
 	public boolean addUser(Community c, User user){
