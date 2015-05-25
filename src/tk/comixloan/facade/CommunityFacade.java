@@ -33,7 +33,11 @@ public class CommunityFacade {
 	public boolean addUser(Long idCommunity, String  username){
 		UserFacade userFacade = new UserFacade(this.em);
 		
-		return this.addUser(this.get(idCommunity), userFacade.findByUsername(username));
+		User user = userFacade.findByUsername(username);
+		if(user != null)
+			return this.addUser(this.get(idCommunity), user);
+		else
+			return false;
 	}
 	
 	public boolean addUser(Community c, User user){

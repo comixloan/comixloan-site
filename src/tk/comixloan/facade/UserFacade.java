@@ -71,13 +71,15 @@ public class UserFacade {
     }
     
     public User findByUsername(String username){
-    	TypedQuery<User> q = em.createQuery("SELECT u FROM User u WHERE u.userName = :user", User.class);
-    	q.setParameter("user", username);
-    	
-    	try{
-    		return q.getSingleResult();
-    	}catch(NoResultException ex){
-    		return null; 
+
+    		TypedQuery<User> q = em.createQuery("SELECT u FROM User u WHERE u.userName = :user", User.class);
+    		q.setParameter("user", username);
+    		User singleResult = q.getSingleResult();
+
+    		try{
+    			return singleResult;
+    		}catch(NoResultException ex){
+    			return null; 
     	}
     }
     
