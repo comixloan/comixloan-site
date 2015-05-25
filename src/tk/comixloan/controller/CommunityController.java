@@ -31,7 +31,7 @@ public class CommunityController extends AbstractSessionController {
 		this.community = this.communityFacade.create(this.getCurrentUser().getId(), name, description);
 		
 		if (this.community == null){
-			return "error/community";
+			return "home";
 		}else{
 			return "community";
 		}

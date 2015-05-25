@@ -41,7 +41,7 @@ public class ComiXloanController extends AbstractSessionController{
 	public String logIn() throws NoSuchAlgorithmException{
 		this.setCurrentUser(this.getUserFacade().findByEmailPassword(email, passWord));
 		if(this.getCurrentUser() == null){
-			return "error/login";	
+			return "login";	
 		}
 		else 
 			return "home";
@@ -49,7 +49,7 @@ public class ComiXloanController extends AbstractSessionController{
 	
 	public String signIn() throws NoSuchAlgorithmException{
 		if (this.getUserFacade().existsUser(email, userName))
-			return "error/signin";
+			return "signin";
 		else{
 			this.setCurrentUser(this.getUserFacade().createUser(name, surname, email, passWord, userName));
 			return "home";
