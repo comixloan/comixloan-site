@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class User {
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Loan> loans;
 
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 	private List<Community> communities;
 	
 	public User(){}
