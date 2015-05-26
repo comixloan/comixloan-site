@@ -37,7 +37,7 @@ public class SerieFacade {
 	}
 	
 	public List<Serie> find(String name){
-		TypedQuery<Serie> q= em.createQuery("SELECT s FROM Serie s WHERE s.name= :name",Serie.class);
+		TypedQuery<Serie> q= em.createQuery("SELECT s FROM Serie s WHERE s.name LIKE :name",Serie.class);
 		q.setParameter("name", "%"+name+"%");
 		return q.getResultList();
 	}
