@@ -33,19 +33,18 @@ public class CommunityFacade {
 	public boolean addUser(Long idCommunity, String  username){
 		UserFacade userFacade = new UserFacade(this.em);
 		
+		Community community = this.get(idCommunity);
 		User user = userFacade.findByUsername(username);
-		if(user != null && checkUserInCommunity(idCommunity,username))
-			return this.addUser(this.get(idCommunity), user);
+		if(user != null && !checkUserInCommunity(community,user))
+			return this.addUser(community, user);
 		else
 			return false;
 	}
 	
-	private boolean checkUserInCommunity(Long idCommunity, String username) {
-		UserFacade userFacade = new UserFacade(this.em);
-		User user = userFacade.findByUsername(username);
+	private boolean checkUserInCommunity(Community community, User user) {
 		List<Community> communityUser=user.getCommunities();
 		
-		return communityUser.contains(idCommunity);
+		return communityUser.contains(community);
 	}
 
 	public boolean addUser(Community c, User user){
