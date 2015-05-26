@@ -48,7 +48,7 @@ public class CommunityController extends AbstractSessionController {
 	}
 	
 	public String createCommunity(){
-		this.community = this.communityFacade.create(this.getCurrentUser().getId(), name, description);
+		this.setCommunity(this.communityFacade.create(this.getCurrentUser().getId(), name, description));
 		
 		if (this.community == null){
 			return "home";
