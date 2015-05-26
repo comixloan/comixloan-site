@@ -28,7 +28,7 @@
 					autore:<h:inputText value="#{serieController.author}" />
 				</div>
 				<div>
-					<h:commandButton value="aggiungi"  />
+					<h:commandButton value="aggiungi" action="#{serieController.createSerie}" />
 				</div>
 
 			</h:form>

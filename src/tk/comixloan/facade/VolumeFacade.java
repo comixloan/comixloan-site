@@ -24,6 +24,12 @@ public class VolumeFacade {
 		this.em=em;
 	}
 	
+	public Volume createVolume(Long vol,Double price,String description,Long id,Long idUser){
+		Serie s = new SerieFacade(em).getSerie(id);
+		User user = new UserFacade(em).getUser(idUser);
+		return this.createVolume(vol, price, description, s, user);
+	}
+	
 	//da finire i collegamenti con utente e con serie 
 	public Volume createVolume(Long vol,Double price,String description,Serie serie,User user){
 		
@@ -62,6 +68,10 @@ public class VolumeFacade {
 		}else{
 			 return l;
 		}
+	}
+	
+	public List<Volume> getVolumes(Long id){
+		return new UserFacade(em).getUser(id).getVolumes();
 	}
 
 }

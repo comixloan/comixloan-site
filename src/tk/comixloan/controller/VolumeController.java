@@ -1,5 +1,6 @@
 package tk.comixloan.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -10,7 +11,7 @@ import tk.comixloan.model.*;
 public class VolumeController extends AbstractSessionController {
 	@EJB
 	private VolumeFacade volumeFacade;
-	private List<Volume> listVolume;
+	private List<Volume> listVolumes;
 	private long number;
 	private double price;
 	private String description;
@@ -18,23 +19,34 @@ public class VolumeController extends AbstractSessionController {
 	
 	
 	public String listVolume(){
-		listVolume = getCurrentUser().getVolumes(); 
-		return "volume/list";
+		listVolumes = this.volumeFacade.getVolumes(this.getCurrentUser().getId());
+		if (listVolumes == null) listVolumes = new LinkedList<Volume>();
+		return "/volume/list";
 	}
 	
+	public String addVolume(){
+		Long idSerie = (Long) this.getSessionVariable("serieID");
+		
+		Volume v = this.volumeFacade.createVolume(number, price, description, idSerie, this.getCurrentUser().getId());
+		
+		if (v == null)
+			return "/volume/insertVolume";
+		else{
+			listVolumes = this.volumeFacade.getVolumes(this.getCurrentUser().getId());
+			return "/volume/list";
+		}
+	}
 	
-	
-
 	/*
 	 * QUI INIZIANO I GETTER ED I SETTER
-	 * @param listVolume
+	 * 
 	 */
 	
-	public List<Volume> getListVolume() {
-		return listVolume;
+	public List<Volume> getListVolumes() {
+		return listVolumes;
 	}
 	public void setListVolume(List<Volume> listVolume) {
-		this.listVolume = listVolume;
+		this.listVolumes = listVolume;
 	}
 	public long getNumber() {
 		return number;

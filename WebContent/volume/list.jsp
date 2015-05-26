@@ -17,9 +17,9 @@
 		<table>
 			<tr>
 				<td>serie</td>
-				<td>n°volume</td>
+				<td>n volume</td>
 			</tr>
-			<c:forEach var="volume" items="#{volumeController.listVolume}">
+			<c:forEach var="volume" items="#{volumeController.listVolumes}">
 				<tr>
 					<td>${volume.serie.name}</td>
 					<td>${volume.number}</td>
@@ -29,7 +29,7 @@
 		</table>
 
 		<div>
-			<a href="./searchedSeries">Aggiungi volume</a>
+			<a href="<c:url value= "/faces/volume/searchedSeries.jsp" />">Aggiungi volume</a>
 		</div>
 
 	</f:view>

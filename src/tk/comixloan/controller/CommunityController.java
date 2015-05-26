@@ -35,25 +35,25 @@ public class CommunityController extends AbstractSessionController {
 	
 	public String listCommunity(){
 		this.communities = this.getCurrentUser().getCommunities();
-		return "listCommunity";
+		return "/listCommunity";
 	}
 	
 	public String viewCommunity(){
 		this.setCommunity(this.communityFacade.get(new Long(this.community_id)));
 		
 		if (this.community == null)
-			return "home";
+			return "/home";
 		else
-			return "community";
+			return "/community";
 	}
 	
 	public String createCommunity(){
 		this.setCommunity(this.communityFacade.create(this.getCurrentUser().getId(), name, description));
 		
 		if (this.community == null){
-			return "home";
+			return "/home";
 		}else{
-			return "community";
+			return "/community";
 		}
 	}
 	

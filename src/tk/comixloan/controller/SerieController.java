@@ -1,5 +1,7 @@
 package tk.comixloan.controller;
 
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -15,7 +17,7 @@ public class SerieController extends AbstractSessionController{
 	@EJB
 	private SerieFacade serieFacade;
 	private String querySerie;
-	private List<Serie> listSeries;
+	private List<Serie> listSeries = new LinkedList<Serie>();
 	private String name;
 	private String description;
 	private String editor;
@@ -25,17 +27,23 @@ public class SerieController extends AbstractSessionController{
 	private String serieCorrente;
 	
 	public String searchSerie(){
-		listSeries= serieFacade.find(querySerie);
-		return "volume/searchedSeries";
+		listSeries = serieFacade.find(querySerie);
+		return "/volume/searchedSeries";
 	}
-	
-	public String createNotFoundSerie(){
-		return "volume/searchedSeries";
-	}
-	
 	public String selectSerie(){
 		this.putSessionVariable("serieID", new Long(this.serieCorrente));
-		return "volume/insertVolume";
+		return "/volume/insertVolume";
+	}
+	
+	public String createSerie(){
+		Serie s = this.serieFacade.createSerie(name, description, new Date(), editor, author);
+		
+		if (s == null)
+			return "/volume/insertSerie";
+		else{
+			this.putSessionVariable("serieID", s.getId());
+			return "/volume/insertVolume";
+		}
 	}
 	
 	/*
@@ -90,7 +98,12 @@ public class SerieController extends AbstractSessionController{
 		this.author = autore;
 	}
 	
+	public String getSerieCorrente() {
+		return serieCorrente;
+	}
 	
-	
+	public void setSerieCorrente(String serieCorrente) {
+		this.serieCorrente = serieCorrente;
+	}
 
 }

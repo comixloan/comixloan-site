@@ -28,11 +28,11 @@ public class SerieFacade {
 		
 		try{
 			em.persist(s);
+			
 		}catch(Exception ex){
 			ex.printStackTrace();
 			s = null;
 		}
-		
 		return s;
 	}
 	
