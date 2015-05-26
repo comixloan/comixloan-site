@@ -47,4 +47,12 @@ public abstract class AbstractSessionController {
 	public UserFacade getUserFacade() {
 		return userFacade;
 	}
+	
+	public boolean isLogged(){
+		return this.currentUser != null;
+	}
+	
+	public boolean canLogin(){
+		return !this.isLogged();
+	}
 }
