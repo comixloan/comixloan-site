@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.persistence.EntityManager;
 
 import tk.comixloan.facade.SerieFacade;
@@ -18,9 +19,13 @@ public class SerieController extends AbstractSessionController{
 	private String name;
 	private String description;
 	private String editor;
-	private String autore;
+	private String author;
+	
+	@ManagedProperty(value="#{param.id}")
+	private String serieCorrente;
 	
 	public String searchSerie(){
+		listSeries= serieFacade.find(querySerie);
 		return "volume/searchedSeries";
 	}
 	
@@ -28,7 +33,10 @@ public class SerieController extends AbstractSessionController{
 		return "volume/searchedSeries";
 	}
 	
-	
+	public String selectSerie(){
+		this.putSessionVariable("serieID", new Long(this.serieCorrente));
+		return "volume/insertVolume";
+	}
 	
 	/*
 	 * QUI INZIANO I GETTER ED I SETTER
@@ -74,12 +82,12 @@ public class SerieController extends AbstractSessionController{
 		this.editor = editor;
 	}
 
-	public String getAutore() {
-		return autore;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setAutore(String autore) {
-		this.autore = autore;
+	public void setAuthor(String autore) {
+		this.author = autore;
 	}
 	
 	
