@@ -12,7 +12,7 @@ public class Volume {
 	private Long id;
 	
 	@Column(nullable = false)
-	private Long vol;
+	private Long number;
 	
 	@Column(nullable = false)
 	private Double price;
@@ -37,7 +37,7 @@ public class Volume {
 
 	public Volume(Long vol, Double price, Serie serie) {
 		super();
-		this.vol = vol;
+		this.number = vol;
 		this.price = price;
 		this.serie = serie;
 		this.description = null;
@@ -45,7 +45,7 @@ public class Volume {
 	
 	public Volume(Long vol, Double price, Serie serie, String description, User user) {
 		super();
-		this.vol = vol;
+		this.number = vol;
 		this.price = price;
 		this.serie = serie;
 		this.description = description;
@@ -60,12 +60,12 @@ public class Volume {
 		this.id = id;
 	}
 
-	public Long getVol() {
-		return vol;
+	public Long getNumber() {
+		return number;
 	}
 
-	public void setVol(Long vol) {
-		this.vol = vol;
+	public void setNumber(Long vol) {
+		this.number = vol;
 	}
 
 	public Double getPrice() {

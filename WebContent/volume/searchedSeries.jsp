@@ -7,25 +7,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Home</title>
+<title>Serie trovate</title>
 </head>
 <body>
 <f:view>
-	<h1>${comixloanController.currentUser.userName}</h1>
-	<h:form>
-		<div>
-			<h:commandLink value="Login page" action="#{comixloanController.home}" />
-		</div>
-		<div>
-			<h:commandLink value="Crea Communita" action="createCommunity.jsp" />
-		</div>
-		<div>
-			<h:commandLink value="Visualizza Communita" action="#{communityController.listCommunity}" />
-		</div>
-		<div>
-			<h:commandLink value="Visualizza Volumi" action="#{volumeController.listVolume}" />
-		</div>
-	</h:form>
+	<h3>Cerca la serie</h3>
+	<h:form> </h:form>
+
 </f:view>
 </body>
 </html>
