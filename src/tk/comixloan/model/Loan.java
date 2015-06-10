@@ -13,6 +13,7 @@ public class Loan {
 	private Long id;
 	
 	@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name = "loan")
 	private List<Volume> volumes;
 	
 	@Column(nullable = false)

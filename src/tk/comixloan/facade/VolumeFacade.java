@@ -50,26 +50,6 @@ public class VolumeFacade {
 		
 	}
 	
-	public boolean setCurrentLoan(Loan l, Volume v){
-		v.setLoan(l);
-		try{
-			em.persist(v);
-			return new LoanFacade(em).addVolume(l, v);
-		}catch(Exception ex){
-			ex.printStackTrace();
-			return false;
-		}		
-	}
-	
-	public Loan setCurrentLoan(Volume v, User u){
-		Loan l = new LoanFacade(em).create(new Date(), u);
-		if (l == null || this.setCurrentLoan(l, v)){
-			return null;
-		}else{
-			 return l;
-		}
-	}
-	
 	public List<Volume> getVolumes(Long id){
 		return new UserFacade(em).getUser(id).getVolumes();
 	}

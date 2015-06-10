@@ -35,6 +35,10 @@ public abstract class AbstractSessionController {
 		session.setAttribute(value, o);
 	}
 	
+	public String[] getValuesParamiter(String name){
+		return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterValuesMap().get(name);
+	}
+	
 	public User getCurrentUser() {
 		return currentUser;
 	}

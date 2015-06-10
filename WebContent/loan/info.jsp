@@ -13,7 +13,7 @@
 	<h1>Informazioni</h1>
 	
 	<div>
-		<strong>Username: </strong> #{loanController.currentLoan.user.userName}
+		<b>Username: </b>
 	</div>
 	
 	<div>

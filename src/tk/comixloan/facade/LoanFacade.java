@@ -24,23 +24,24 @@ public class LoanFacade {
 		this.em=em;
 	}
 	
-	public Loan create(Date startDate, Long idUser){
+	public Loan create(Date startDate, Long idUser, Long idCreator){
 		User user = new UserFacade(this.em).getUser(idUser);
+		User creator = new UserFacade(this.em).getUser(idCreator);
 		
-		return this.create(startDate, user);
+		return this.create(startDate, user, creator);
 	}
 	
-	public Loan create(Date startDate, User user){
+	public Loan create(Date startDate, User user, User creator){
 		Loan l = new Loan(new LinkedList<Volume>(), startDate, user);
 		
-		List<Loan> loans= user.getLoans();
+		List<Loan> loans= creator.getLoans();
     	if (loans == null)
     		loans = new LinkedList<Loan>();
     	loans.add(l);
-    	user.setLoans(loans);
+    	creator.setLoans(loans);
     	
     	try{
-    		em.persist(user);
+    		em.persist(creator);
     		return l;
     	}catch(Exception ex){
     		ex.printStackTrace();
@@ -55,14 +56,10 @@ public class LoanFacade {
 	}
 	
 	public boolean addVolume(Loan l, Volume v){
-		List<Volume> lv = l.getVolumes();
-		if (lv == null)
-			lv = new LinkedList<Volume>();
-		lv.add(v);
-		l.setVolumes(lv);
+		v.setLoan(l);
 		
 		try{
-			em.persist(l);
+			em.persist(v);
 			return true;
 		}catch(Exception ex){
 			ex.printStackTrace();

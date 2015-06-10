@@ -36,7 +36,9 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<a href='<c:url value="/faces/list.jsp" />'>completa il prestito</a>
+			<h:form>
+				<h:commandLink action = "#{loanController.listLoan}" value = "Conferma prestito" />
+			</h:form>
 		</div>
 		<div>
 			<h:form>
@@ -52,12 +54,11 @@
 				<c:forEach var="serie" items="#{loanController.series2Volumes.entrySet()}">
 					<div>
 						<h4>${serie.key}</h4>
-						<h:selectManyCheckbox layout="pageDirection"
-							value="#{loanController.checkBoxVolumes}">
-							<c:forEach var = "v" items = "${serie.value}">
-								<f:selectItem value="#{v.id}" itemLabel="#{v.id}" />
-							</c:forEach>
-						</h:selectManyCheckbox>
+						<c:forEach var = "a" items = "${serie.value}">
+							<p>
+								<input type="checkbox" name="checkBoxVolumesHTML[]" value="${a}" /> ${a.number}
+							</p>
+						</c:forEach>
 					</div>
 				</c:forEach>
 				<h:commandButton value="aggiungi a zaino"

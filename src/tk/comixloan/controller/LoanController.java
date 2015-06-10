@@ -3,6 +3,7 @@ package tk.comixloan.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 import tk.comixloan.model.*;
 import tk.comixloan.facade.CommunityFacade;
@@ -47,7 +49,6 @@ public class LoanController extends AbstractSessionController {
 	private String idVolume;
 	
 	private Map<String, List<Volume>> series2Volumes = new HashMap<String, List<Volume>>();
-	private String[] checkBoxVolumes;
 
 	@PostConstruct
 	public void initLoan(){
@@ -62,7 +63,7 @@ public class LoanController extends AbstractSessionController {
 	public String listLoan(){
 		long idUser=this.getCurrentUser().getId();
 		userLoans=loanFacade.listLoanUser(idUser);
-		return "loan/list.jsp";
+		return "/loan/list.jsp";
 	}
 
 
@@ -72,6 +73,7 @@ public class LoanController extends AbstractSessionController {
 
 	public String getLoanInformation(){
 		currentLoan=this.loanFacade.find(new Long(idCurrentLoan));
+		System.out.println(currentLoan);
 		return "/loan/info";
 	}
 
@@ -82,7 +84,7 @@ public class LoanController extends AbstractSessionController {
 	}
 
 	public String selectUser(){
-		this.setCurrentLoan(loanFacade.create(new Date(), new Long(idUserToLoan)));
+		this.setCurrentLoan(loanFacade.create(new Date(), new Long(idUserToLoan), this.getCurrentUser().getId()));
 		return "/loan/insertVolume";
 	}
 	
@@ -92,10 +94,14 @@ public class LoanController extends AbstractSessionController {
 	}
 	
 	public String addVolume(){
-		if (this.checkBoxVolumes != null){
-			for(String id: this.checkBoxVolumes){
+		
+		String[] checkBoxVolumes = this.getValuesParamiter("checkBoxVolumesHTML[]");
+		
+		if (checkBoxVolumes != null){
+			for(String id: checkBoxVolumes){
 				this.loanFacade.addVolume(this.currentLoan, new Long(id));
 			}
+			this.initLoan();
 		}
 		return "/loan/insertVolume";
 	}
@@ -194,13 +200,5 @@ public class LoanController extends AbstractSessionController {
 
 	public void setSeries2Volumes(Map<String, List<Volume>> series2Volumes) {
 		this.series2Volumes = series2Volumes;
-	}
-	
-	public String[] getCheckBoxVolumes() {
-		return checkBoxVolumes;
-	}
-	
-	public void setCheckBoxVolumes(String[] checkBoxVolumes) {
-		this.checkBoxVolumes = checkBoxVolumes;
 	}
 }
