@@ -60,6 +60,11 @@ public class LoanFacade {
 		return em.find(Loan.class, id);
 	}
 	
+	public List<Loan> listLoanUser(Long id){
+		User u = new UserFacade(this.em).getUser(id);
+		return u.getLoans();
+	}
+	
 	public List<Volume> getVolumes(Long id){
 		try{
 			return this.find(id).getVolumes();
