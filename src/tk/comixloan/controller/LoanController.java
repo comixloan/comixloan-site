@@ -1,6 +1,8 @@
 package tk.comixloan.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +14,7 @@ import javax.faces.bean.ManagedProperty;
 import tk.comixloan.model.*;
 import tk.comixloan.facade.CommunityFacade;
 import tk.comixloan.facade.LoanFacade;
+import tk.comixloan.facade.SerieFacade;
 
 @ManagedBean(name = "loanController")
 public class LoanController extends AbstractSessionController {
@@ -22,15 +25,18 @@ public class LoanController extends AbstractSessionController {
 	@EJB
 	private CommunityFacade communityFacade;
 	
+	@EJB
+	private SerieFacade	serieFacade;
+	
 	private String username;
 	private String idVolumeSearched;
 	
 	@ManagedProperty(value="#{param.id}")
 	private String idCurrentLoan;
 	
-	private List<Loan> userLoans;
+	private List<Loan> userLoans = new ArrayList<Loan>();
 	private Loan currentLoan;
-	private List<User> possibleUser;
+	private List<User> possibleUser = new ArrayList<User>();
 	
 	@ManagedProperty(value="#{param.idUser}")
 	private String idUserToLoan;
@@ -40,7 +46,7 @@ public class LoanController extends AbstractSessionController {
 	@ManagedProperty(value = "#{param.idVolume}")
 	private String idVolume;
 	
-	private Map<String, List<Volume>> series2Volumes;
+	private Map<String, List<Volume>> series2Volumes = new HashMap<String, List<Volume>>();
 	private String[] checkBoxVolumes;
 
 	@PostConstruct
@@ -66,23 +72,23 @@ public class LoanController extends AbstractSessionController {
 
 	public String getLoanInformation(){
 		currentLoan=this.loanFacade.find(new Long(idCurrentLoan));
-		return "loan/info";
+		return "/loan/info";
 	}
 
 	public String showUser(){
 		Long idCurrentUser=new Long(this.getCurrentUser().getId());
 		possibleUser= communityFacade.findUserFromCommunities(idCurrentUser, username);
-		return "loan/add";
+		return "/loan/add";
 	}
 
 	public String selectUser(){
 		this.setCurrentLoan(loanFacade.create(new Date(), new Long(idUserToLoan)));
-		return "loan/insertVolume";
+		return "/loan/insertVolume";
 	}
 	
 	public String removeVolume(){
 		this.loanFacade.removeVolume(this.currentLoan, new Long(idVolume));
-		return "loan/insertVolme";
+		return "/loan/insertVolme";
 	}
 	
 	public String addVolume(){
@@ -91,12 +97,17 @@ public class LoanController extends AbstractSessionController {
 				this.loanFacade.addVolume(this.currentLoan, new Long(id));
 			}
 		}
-		return "loan/insertVolume";
+		return "/loan/insertVolume";
 	}
 	
 	public String searchSeries(){
+		List<Serie> l = this.serieFacade.findByUser(this.getCurrentUser().getId(), this.nameSerie);
 		
-		return "loan/inserVolume";
+		for(Serie s: l){
+			this.series2Volumes.put(s.getName(), this.serieFacade.getVolumes(s.getId(), this.getCurrentUser().getId()));
+		}
+		
+		return "/loan/inserVolume";
 	}
 
 
@@ -142,7 +153,7 @@ public class LoanController extends AbstractSessionController {
 
 	public void setCurrentLoan(Loan currentLoan) {
 		this.currentLoan = currentLoan;
-		this.putSessionVariable("currentLoan",this.currentLoan);
+		this.putSessionVariable("currentLoan",this.currentLoan.getId());
 	}
 
 	public List<User> getPossibleUser() {

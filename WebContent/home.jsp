@@ -25,6 +25,9 @@
 		<div>
 			<h:commandLink value="Visualizza Volumi" action="#{volumeController.listVolume}" />
 		</div>
+		<div>
+			<h:commandLink value="Gestione Prestiti"  action="#{loanController.listLoan}" />
+		</div>
 	</h:form>
 </f:view>
 </body>

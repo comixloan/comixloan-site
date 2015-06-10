@@ -77,12 +77,14 @@ public class CommunityFacade {
 
 	
 	public List<User> findUserFromCommunities(Long idcurrentUser, String username){
-		TypedQuery<User> q= (TypedQuery<User>) this.em.createNativeQuery("SELECT DISTINCT u.* FROM users_community j1, users_community j2, users u"+
-				"WHERE j1.users_id = :id AND j1.communities_id = j2.communities_id AND j2.users_id != :id"+
-				"AND u.username LIKE :u", User.class);
+		@SuppressWarnings("unchecked")
+		TypedQuery<User> q= (TypedQuery<User>) this.em.createNativeQuery("SELECT DISTINCT u.* FROM users_community j1, users_community j2, users u "+
+				"WHERE j1.users_id = ?1 AND j1.communities_id = j2.communities_id AND j2.users_id != ?2 "+
+				"AND u.username LIKE ?3", User.class);
 		
-		q.setParameter("id", idcurrentUser);
-		q.setParameter("u", "%"+username+"%");
+		q.setParameter(1, idcurrentUser);
+		q.setParameter(2, idcurrentUser);
+		q.setParameter(3, "%"+username+"%");
 		
 		
 		try{

@@ -22,7 +22,7 @@
 				<h:commandLink action = "./signin.jsp" value = "Registrati"/>
 			</div>
 			<div>
-				<h:commandLink action = "./login.jsp" value = "Acceddi"/>
+				<h:commandLink action = "./login.jsp" value = "Accedi"/>
 			</div>
 		</h:form>
 	</h:panelGroup>

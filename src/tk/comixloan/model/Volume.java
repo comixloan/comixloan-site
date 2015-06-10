@@ -115,6 +115,11 @@ public class Volume {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	@Override
+	public String toString() {
+		return ""+this.id;
+	}
 
 	@Override
 	public int hashCode() {

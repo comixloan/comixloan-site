@@ -11,7 +11,7 @@
 </head>
 <body>
 	<f:view>
-		<h1>${LoanController.currentLoan.id}</h1>
+		<h1>${loanController.currentLoan.id}</h1>
 		<div>
 			<h1>cosa c'è nello Zaino?</h1>
 			<table>
@@ -41,22 +41,21 @@
 		<div>
 			<h:form>
 
-				<h:inputText value="#{LoanController.nameSerie}" />
+				<h:inputText value="#{loanController.nameSerie}" />
 				<h:commandButton value="cerca"
-					action="#{LoanController.searchSeries}" />
+					action="#{loanController.searchSeries}" />
 			</h:form>
 		</div>
 
 		<div>
 			<h:form>
-				<c:forEach var="serie" items="#{loanController.series2Volumes}">
+				<c:forEach var="serie" items="#{loanController.series2Volumes.entrySet()}">
 					<div>
 						<h4>${serie.key}</h4>
 						<h:selectManyCheckbox layout="pageDirection"
 							value="#{loanController.checkBoxVolumes}">
-							<c:forEach var="volume" items="${serie.value}">
-								<f:selectItem itemLabel="Volume # #{volume.number}"
-									itemValue="#{volume.id}" />
+							<c:forEach var = "v" items = "${serie.value}">
+								<f:selectItem value="#{v.id}" itemLabel="#{v.id}" />
 							</c:forEach>
 						</h:selectManyCheckbox>
 					</div>

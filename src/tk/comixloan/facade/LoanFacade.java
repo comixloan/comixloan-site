@@ -18,6 +18,8 @@ public class LoanFacade {
 	@PersistenceContext(unitName = "comixloan-database")
     private EntityManager em;
 	
+	public LoanFacade(){}
+	
 	public LoanFacade(EntityManager em){
 		this.em=em;
 	}

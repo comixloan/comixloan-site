@@ -31,9 +31,9 @@
 				<td>${user.userName}</td>
 				<td>
 					<h:form>
-						<h:commandLink action = "#{loanController.selectUser}" >
+						<h:commandButton action = "#{loanController.selectUser}" value="Seleziona" >
 							<f:param name = "idUser" value = "#{user.id}"/>
-						</h:commandLink>
+						</h:commandButton>
 					</h:form>
 				</td>
 			</tr>
