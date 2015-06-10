@@ -46,5 +46,10 @@ public class SerieFacade {
 		Serie s=em.find(Serie.class, id);
 		return s;
 	}
+	
+	public List<Serie> findByUser(String name){
+		
+		return null;
+	}
 
 }

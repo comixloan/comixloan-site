@@ -73,5 +73,12 @@ public class VolumeFacade {
 	public List<Volume> getVolumes(Long id){
 		return new UserFacade(em).getUser(id).getVolumes();
 	}
-
+	
+	public Volume find(Long id){
+		try{
+			return this.em.find(Volume.class, id);
+		}catch(Exception ex){
+			return null;
+		}
+	}
 }

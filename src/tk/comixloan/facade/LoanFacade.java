@@ -46,6 +46,12 @@ public class LoanFacade {
     	}
 	}
 	
+	public boolean addVolume(Loan l, Long idVolume){
+		Volume v = new VolumeFacade(this.em).find(idVolume);
+		
+		return this.addVolume(l, v);
+	}
+	
 	public boolean addVolume(Loan l, Volume v){
 		List<Volume> lv = l.getVolumes();
 		if (lv == null)
@@ -53,6 +59,27 @@ public class LoanFacade {
 		lv.add(v);
 		l.setVolumes(lv);
 		
+		try{
+			em.persist(l);
+			return true;
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean removeVolume(Loan l, Long idVolume){
+		Volume v = new VolumeFacade(this.em).find(idVolume);
+		
+		return this.removeVolume(l, v);
+	}
+	
+	public boolean removeVolume(Loan l, Volume v){
+		List<Volume> lv = l.getVolumes();
+		if (lv == null)
+			return true;
+		
+		lv.remove(v);
 		try{
 			em.persist(l);
 			return true;
