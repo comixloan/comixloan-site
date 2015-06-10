@@ -36,6 +36,7 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<a href='<c:url value="/faces/list.jsp" />'>completa il prestito</a>
 		</div>
 		<div>
 			<h:form>
@@ -60,6 +61,8 @@
 						</h:selectManyCheckbox>
 					</div>
 				</c:forEach>
+				<h:commandButton value="aggiungi a zaino"
+					action="#{loanController.addVolume}" />
 			</h:form>
 		</div>
 
