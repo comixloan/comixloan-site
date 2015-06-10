@@ -55,8 +55,8 @@
 						<h:selectManyCheckbox layout="pageDirection"
 							value="#{loanController.checkBoxVolumes}">
 							<c:forEach var="volume" items="${serie.value}">
-								<f:selectItem itemLabel="Volume # ${volume.number}"
-									itemValue="${volume.id}" />
+								<f:selectItem itemLabel="Volume # #{volume.number}"
+									itemValue="#{volume.id}" />
 							</c:forEach>
 						</h:selectManyCheckbox>
 					</div>
