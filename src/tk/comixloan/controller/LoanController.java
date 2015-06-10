@@ -65,6 +65,30 @@ public class LoanController extends AbstractSessionController {
 	public void setIdCurrentLoan(String idCurrentLoan) {
 		this.idCurrentLoan = idCurrentLoan;
 	}
+
+
+
+	public List<Loan> getUserLoans() {
+		return userLoans;
+	}
+
+
+
+	public void setUserLoans(List<Loan> userLoans) {
+		this.userLoans = userLoans;
+	}
+
+
+
+	public Loan getCurrentLoan() {
+		return currentLoan;
+	}
+
+
+
+	public void setCurrentLoan(Loan currentLoan) {
+		this.currentLoan = currentLoan;
+	}
 	
 	
 	
