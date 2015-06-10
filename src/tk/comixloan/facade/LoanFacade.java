@@ -25,6 +25,10 @@ public class LoanFacade {
 	public Loan create(Date startDate, Long idUser){
 		User user = new UserFacade(this.em).getUser(idUser);
 		
+		return this.create(startDate, user);
+	}
+	
+	public Loan create(Date startDate, User user){
 		Loan l = new Loan(new LinkedList<Volume>(), startDate, user);
 		
 		List<Loan> loans= user.getLoans();
