@@ -73,7 +73,7 @@ public class LoanController extends AbstractSessionController {
 
 	public String getLoanInformation(){
 		currentLoan=this.loanFacade.find(new Long(idCurrentLoan));
-		System.out.println(currentLoan);
+		System.out.println(currentLoan.getVolumes());
 		return "/loan/info";
 	}
 

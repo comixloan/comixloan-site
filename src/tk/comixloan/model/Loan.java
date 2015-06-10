@@ -12,8 +12,7 @@ public class Loan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name = "loan")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy = "loan")
 	private List<Volume> volumes;
 	
 	@Column(nullable = false)

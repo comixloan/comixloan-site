@@ -13,19 +13,19 @@
 	<h1>Informazioni</h1>
 	
 	<div>
-		<b>Username: </b>
+		<b>Username: </b> ${loanController.currentLoan.user.userName}
 	</div>
 	
 	<div>
 		<table>
 			<tr>
 				<td>Serie</td>
-				<td>Voleme</td>
+				<td>Volume</td>
 			</tr>
-			<c:forEach var = "volume" items = "#{loanController.currentLoan.volumes}">
+			<c:forEach var = "v" items = "#{loanController.currentLoan.volumes}">
 				<tr>
-					<td>${volume.serie.name}</td>
-					<td>${volume.number}</td>
+					<td>${v.serie.name}</td>
+					<td>${v.number}</td>
 				</tr>
 			</c:forEach>
 		</table>

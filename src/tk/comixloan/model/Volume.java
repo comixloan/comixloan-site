@@ -27,7 +27,7 @@ public class Volume {
 	@ManyToMany
 	private List<HistoryLoan> loanHistory;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	private Loan loan;
 	
 	@ManyToOne
