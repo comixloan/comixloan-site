@@ -44,7 +44,7 @@ public class User {
 	@JoinColumn(name = "owner_id")
 	private List<HistoryLoan> historiesLoan;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "owner_id")
 	private List<Loan> loans;
 

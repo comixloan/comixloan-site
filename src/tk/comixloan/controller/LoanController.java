@@ -3,7 +3,7 @@ package tk.comixloan.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,12 +11,14 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
+
 
 import tk.comixloan.model.*;
 import tk.comixloan.facade.CommunityFacade;
+
 import tk.comixloan.facade.LoanFacade;
 import tk.comixloan.facade.SerieFacade;
+
 
 @ManagedBean(name = "loanController")
 public class LoanController extends AbstractSessionController {
@@ -26,6 +28,7 @@ public class LoanController extends AbstractSessionController {
 	
 	@EJB
 	private CommunityFacade communityFacade;
+	
 	
 	@EJB
 	private SerieFacade	serieFacade;
@@ -58,6 +61,7 @@ public class LoanController extends AbstractSessionController {
 			this.currentLoan = this.loanFacade.find(idLoan);
 		}
 	}
+	
 
 
 	public String listLoan(){
@@ -68,7 +72,8 @@ public class LoanController extends AbstractSessionController {
 
 
 	public String giveBack(){
-		return "";
+		this.loanFacade.delete(idCurrentLoan);
+		return "/loan/list.jsp";
 	}
 
 	public String getLoanInformation(){

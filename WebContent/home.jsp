@@ -28,6 +28,9 @@
 		<div>
 			<h:commandLink value="Gestione Prestiti"  action="#{loanController.listLoan}" />
 		</div>
+		<div>
+			<h:commandLink value="Storico Prestiti"  action="#{historyLoanController.historyLoan}" />
+		</div>
 	</h:form>
 </f:view>
 </body>
