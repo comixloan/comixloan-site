@@ -22,7 +22,7 @@
 				<td>Serie</td>
 				<td>Volume</td>
 			</tr>
-			<c:forEach var = "v" items = "#{historyLoanController.currentLoan.volumes}">
+			<c:forEach var = "v" items = "#{historyLoanController.currentHistoryLoan.volumes}">
 				<tr>
 					<td>${v.serie.name}</td>
 					<td>${v.number}</td>

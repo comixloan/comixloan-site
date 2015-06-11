@@ -19,16 +19,16 @@
 				<td>data fine prestito</td>
 				<td></td>
 			</tr>
-			<c:forEach var="historyLoan"
+			<c:forEach var="hloan"
 				items="#{historyLoanController.listHistoryLoans}">
 				<tr>
-					<td>${historyLoan.user.userName}</td>
-					<td>${historyloan.dateStart.toString}</td>
-					<td>${historyloan.dateEnd.toString}</td>
+					<td>${hloan.user.userName}</td>
+					<td>${hloan.dateStart}</td>
+					<td>${hloan.dateEnd}</td>
 					<td><h:form>
 							<h:commandLink action="#{historyLoanController.info}"
 								value="informazioni">
-								<f:param name="id" value="#{historyloan.id}" />
+								<f:param name="id" value="#{hloan.id}" />
 							</h:commandLink>
 						</h:form></td>
 				</tr>

@@ -20,10 +20,15 @@ public class HistoryLoanFacade {
 	
 	public HistoryLoanFacade(){}
 	
-	public HistoryLoan create(Loan loan){
-		HistoryLoan hl = new HistoryLoan(loan);
+	public HistoryLoanFacade(EntityManager em2) {
+		this.em = em2;
+	}
+
+	public HistoryLoan create(Long idLoan, Long idUser){
 		
-		User user = loan.getUser();
+		HistoryLoan hl = new HistoryLoan(this.em.find(Loan.class, idLoan));
+		
+		User user = this.em.find(User.class, idUser);
 		List<HistoryLoan> historiesLoan = user.getHistoriesLoan();
     	if (historiesLoan == null)
     		historiesLoan = new LinkedList<HistoryLoan>();

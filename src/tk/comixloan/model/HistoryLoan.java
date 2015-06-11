@@ -21,8 +21,7 @@ public class HistoryLoan {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateEnd;
 	
-	
-	@ManyToMany(mappedBy = "loanHistory", fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Volume> volumes;
 	
 	@ManyToOne
@@ -42,7 +41,8 @@ public class HistoryLoan {
 		this.user = loan.getUser();
 		this.dateStart = loan.getStartDate();
 		this.dateEnd = new Date();
-		this.volumes = new LinkedList<Volume>(loan.getVolumes());
+		
+		this.volumes = new LinkedList<Volume>();
 	}
 	
 	public HistoryLoan(Date dateStart, List<Volume> volumes, User user) {

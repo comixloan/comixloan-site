@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import tk.comixloan.model.HistoryLoan;
 import tk.comixloan.model.Loan;
 import tk.comixloan.model.User;
 import tk.comixloan.model.Volume;
@@ -103,14 +104,21 @@ public class LoanFacade {
 		}
 	}
 
-	public void delete(Long id){
+	public void delete(Long id, Long idUser){
+		HistoryLoanFacade hlf = new HistoryLoanFacade(this.em);
+		HistoryLoan hl = hlf.create(id, idUser);
+		
 		List<Volume> l = this.getVolumes(id);
 		for(Volume v: l){
 			v.setLoan(null);
+			hl.getVolumes().add(v);
 			em.persist(v);
+			em.persist(hl);
 		}
 		
 		Loan loan = this.find(id);
 		em.remove(loan);
+		
+		
 	}
 }

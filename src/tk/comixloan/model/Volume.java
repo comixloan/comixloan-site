@@ -24,7 +24,7 @@ public class Volume {
 	@Column(nullable = true, length = 2000)
 	private String description;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "volumes", cascade = CascadeType.PERSIST)
 	private List<HistoryLoan> loanHistory;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST})
