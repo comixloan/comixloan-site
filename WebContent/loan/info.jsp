@@ -32,7 +32,7 @@
 		
 		<h:form>
 			<h:commandLink action="#{loanController.giveBack}" value="Segna come restituito">
-				<f:param name = "id" value = "#{loan.id}"/>
+				<f:param name = "id" value = "#{loanController.currentLoan.id}"/>
 			</h:commandLink>
 		</h:form>
 	</div>
