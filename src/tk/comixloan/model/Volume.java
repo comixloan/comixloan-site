@@ -24,10 +24,10 @@ public class Volume {
 	@Column(nullable = true, length = 2000)
 	private String description;
 	
-	@OneToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<HistoryLoan> loanHistory;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST})
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	private Loan loan;
 	
 	@ManyToOne

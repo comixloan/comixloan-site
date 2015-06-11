@@ -95,6 +95,7 @@ public class LoanController extends AbstractSessionController {
 	
 	public String removeVolume(){
 		this.loanFacade.removeVolume(this.currentLoan, new Long(idVolume));
+		this.initLoan();
 		return "/loan/insertVolme";
 	}
 	
@@ -115,7 +116,10 @@ public class LoanController extends AbstractSessionController {
 		List<Serie> l = this.serieFacade.findByUser(this.getCurrentUser().getId(), this.nameSerie);
 		
 		for(Serie s: l){
-			this.series2Volumes.put(s.getName(), this.serieFacade.getVolumes(s.getId(), this.getCurrentUser().getId()));
+			List<Volume> lv = this.serieFacade.getVolumes(s.getId(), this.getCurrentUser().getId());
+			if (lv != null && lv.size() != 0){
+				this.series2Volumes.put(s.getName(), lv);
+			}
 		}
 		
 		return "/loan/inserVolume";
