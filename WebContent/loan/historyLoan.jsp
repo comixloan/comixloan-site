@@ -12,6 +12,29 @@
 <body>
 	<f:view>
 		<h1>storico prestiti</h1>
+		<table>
+			<tr>
+				<td>prestato a</td>
+				<td>Data inizio prestito</td>
+				<td>data fine prestito</td>
+				<td></td>
+			</tr>
+			<c:forEach var="historyLoan"
+				items="#{historyLoanController.listHistoryLoans}">
+				<tr>
+					<td>${historyLoan.user}</td>
+					<td>${historyloan.dateStart}</td>
+					<td>${historyloan.dateEnd}</td>
+					<td><h:form>
+							<h:commandLink action="#{historyLoanController.info}"
+								value="informazioni">
+								<f:param name="id" value="#{historyloan.id}" />
+							</h:commandLink>
+						</h:form></td>
+				</tr>
+			</c:forEach>
+		</table>
+
 	</f:view>
 
 
