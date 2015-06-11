@@ -39,6 +39,13 @@ public class HistoryLoanFacade {
     	}
 	}
 	
+	public List<HistoryLoan> listHistoryLoanUser(Long idUser){
+		User currentUser = em.find(User.class,idUser);
+		
+		return currentUser.getHistoriesLoan();
+	}
+	
+	
 	public HistoryLoan find(Long id){
 		return em.find(HistoryLoan.class, id);
 	}
