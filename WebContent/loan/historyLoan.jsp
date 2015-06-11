@@ -22,9 +22,9 @@
 			<c:forEach var="historyLoan"
 				items="#{historyLoanController.listHistoryLoans}">
 				<tr>
-					<td>${historyLoan.user}</td>
-					<td>${historyloan.dateStart}</td>
-					<td>${historyloan.dateEnd}</td>
+					<td>${historyLoan.user.userName}</td>
+					<td>${historyloan.dateStart.toString}</td>
+					<td>${historyloan.dateEnd.toString}</td>
 					<td><h:form>
 							<h:commandLink action="#{historyLoanController.info}"
 								value="informazioni">
