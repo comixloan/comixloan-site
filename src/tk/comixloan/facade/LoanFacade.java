@@ -104,6 +104,11 @@ public class LoanFacade {
 	}
 
 	public void delete(Loan hl){
+		for(Volume v : hl.getVolumes()){
+			hl.getVolumes().remove(v);
+			v.setLoan(null);
+			em.persist(v);
+		}
 		em.remove(hl);
 	}
 
