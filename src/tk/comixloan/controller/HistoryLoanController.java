@@ -6,6 +6,7 @@ import tk.comixloan.model.*;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import tk.comixloan.facade.HistoryLoanFacade;
 
@@ -13,20 +14,24 @@ import tk.comixloan.facade.HistoryLoanFacade;
 public class HistoryLoanController extends AbstractSessionController {
 	@EJB
 	private HistoryLoanFacade historyLoanFacade;
+	
+	@ManagedProperty(value = "#{param.id}")
 	private Long idHistoryLoan;
+	private HistoryLoan currentHistoryLoan;
+	
 	private List<HistoryLoan> listHistoryLoans;
 	
 	
 	public String historyLoan(){
 		Long idUser = this.getCurrentUser().getId();
 		this.listHistoryLoans= historyLoanFacade.listHistoryLoanUser(idUser);
-		return "/loan/historyLoan.jsp";
+		return "/loan/historyLoan";
 	}
 
-	
-	
-	
-	
+	public String info(){
+		this.currentHistoryLoan = this.historyLoanFacade.find(new Long(this.idHistoryLoan));
+		return "/loan/infoHistoryLoan";
+	}
 	
 	
 	/*
@@ -52,5 +57,15 @@ public class HistoryLoanController extends AbstractSessionController {
 	public void setListHistoryLoans(List<HistoryLoan> listHistoryLoans) {
 		this.listHistoryLoans = listHistoryLoans;
 	}
+
+	public HistoryLoan getCurrentHistoryLoan() {
+		return currentHistoryLoan;
+	}
+
+	public void setCurrentHistoryLoan(HistoryLoan currentHistoryLoan) {
+		this.currentHistoryLoan = currentHistoryLoan;
+	}
+	
+	
 
 }

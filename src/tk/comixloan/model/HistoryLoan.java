@@ -22,7 +22,7 @@ public class HistoryLoan {
 	private Date dateEnd;
 	
 	
-	@ManyToMany(mappedBy = "loanHistory")
+	@ManyToMany(mappedBy = "loanHistory", fetch = FetchType.EAGER)
 	private List<Volume> volumes;
 	
 	@ManyToOne
