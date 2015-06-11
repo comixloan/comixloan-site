@@ -72,7 +72,7 @@ public class LoanController extends AbstractSessionController {
 
 
 	public String giveBack(){
-		this.loanFacade.delete(idCurrentLoan);
+		this.loanFacade.delete(new Long(idCurrentLoan));
 		return "/loan/list.jsp";
 	}
 

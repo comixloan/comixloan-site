@@ -110,12 +110,4 @@ public class LoanFacade {
 	public void delete(Long id){
 		delete(this.find(id));
 	}
-
-	public void delete(String idCurrentLoan) {
-		Loan loanToRemove = em.find(Loan.class, idCurrentLoan);
-		this.delete(loanToRemove);
-		
-	}
-
-
 }
