@@ -74,13 +74,9 @@ public class LoanFacade {
 	}
 	
 	public boolean removeVolume(Loan l, Volume v){
-		List<Volume> lv = l.getVolumes();
-		if (lv == null)
-			return true;
-		
-		lv.remove(v);
+		v.setLoan(null);
 		try{
-			em.persist(l);
+			em.persist(v);
 			return true;
 		}catch(Exception ex){
 			ex.printStackTrace();

@@ -37,13 +37,15 @@ public class User {
 	@Column(nullable=false)
 	private String userName;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
 	private List<Volume> volumes;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "owner_id")
 	private List<HistoryLoan> historiesLoan;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "owner_id")
 	private List<Loan> loans;
 
 	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)

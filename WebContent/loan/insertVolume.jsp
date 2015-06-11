@@ -28,7 +28,7 @@
 						<td><h:form>
 								<h:commandButton value="rimuovi"
 									action="#{loanController.removeVolume}">
-									<f:param name="idVolume" value="#{loan.idVolume}" />
+									<f:param name="idVolume" value="#{volume.id}" />
 								</h:commandButton>
 							</h:form></td>
 

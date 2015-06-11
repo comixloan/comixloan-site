@@ -11,27 +11,12 @@ import tk.comixloan.facade.*;
 @ManagedBean(name = "comixloanController")
 @SessionScoped
 public class ComiXloanController extends AbstractSessionController{
-
-	
-	
-	@EJB
-	private HistoryLoanFacade historyFacade;
-	
-	@EJB
-	private LoanFacade loanFacade;
-	
-	@EJB
-	private SerieFacade serieFacade;
-	
 	
 	private String userName;
 	private String passWord;
 	private String name;
 	private String surname;
-	private String email;
-	
-	@EJB
-	private VolumeFacade volumeFacade;
+	private String email; 
 	
 	
 	public String home(){
