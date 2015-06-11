@@ -73,6 +73,8 @@ public class LoanController extends AbstractSessionController {
 
 	public String giveBack(){
 		this.loanFacade.delete(new Long(idCurrentLoan));
+		long idUser=this.getCurrentUser().getId();
+		userLoans=loanFacade.listLoanUser(idUser);
 		return "/loan/list.jsp";
 	}
 

@@ -103,16 +103,14 @@ public class LoanFacade {
 		}
 	}
 
-	public void delete(Loan hl){
-		for(Volume v : hl.getVolumes()){
-			hl.getVolumes().remove(v);
+	public void delete(Long id){
+		List<Volume> l = this.getVolumes(id);
+		for(Volume v: l){
 			v.setLoan(null);
 			em.persist(v);
 		}
-		em.remove(hl);
-	}
-
-	public void delete(Long id){
-		delete(this.find(id));
+		
+		Loan loan = this.find(id);
+		em.remove(loan);
 	}
 }

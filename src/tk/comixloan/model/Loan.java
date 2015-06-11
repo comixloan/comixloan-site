@@ -12,7 +12,7 @@ public class Loan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany(fetch=FetchType.EAGER, mappedBy = "loan")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy = "loan", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private List<Volume> volumes;
 	
 	@Column(nullable = false)
