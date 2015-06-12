@@ -51,25 +51,30 @@
 			<div class="menu">
 				<h:panelGroup rendered="#{comixloanController.isLogged()}">
 					<div class="btn-group-vertical" role="group" aria-label="...">
-						<a class="btn btn-default btn-lg">
-							<span class="icona"></span> Home
-						</a>
+						
+						
+						<h:form>
+						<h:commandLink  action="#{comixloanController.home}" value="Home"  class="btn btn-default btn-large btn-block" />
+						</h:form>
+						
+						<h:form>
+						<h:commandLink  action="#{communityController.listCommunity}" value="Comunità"  class="btn btn-default btn-large btn-block" />
+						</h:form>
+						
+						<h:form>
+						<h:commandLink  action="#{volumeController.listVolume}" value="Volumi"  class="btn btn-default btn-large btn-block" />
+						</h:form>
 
-						<a class="btn btn-default btn-lg">
-							<span class="icona"></span> Comunità
-						</a>
-
-						<a class="btn btn-default btn-lg">
-							<span class="icona"></span> Volumi
-						</a>
-
-						<a class="btn btn-default btn-lg">
-							<span class="icona"></span> Prestito
-						</a>
-
-						<a class="btn btn-default btn-lg">
-							<span class="icona"></span> Storico Prestito
-						</a>
+						
+						<h:form>
+						<h:commandLink   class="btn btn-default btn-large btn-block" action="#{loanController.listLoan}" value="Gestione prestiti"  />
+						</h:form>
+						
+						
+						<h:form>
+						<h:commandLink class="btn btn-default btn-large btn-block"  action="#{historyLoanController.historyLoan}" value="Storico prestiti" />
+						</h:form>
+					
 					</div>
 				</h:panelGroup>
 			</div>

@@ -35,7 +35,7 @@ public class CommunityController extends AbstractSessionController {
 	
 	public String listCommunity(){
 		this.communities = this.getCurrentUser().getCommunities();
-		return "/listCommunity";
+		return "/listCommunity.xhtml";
 	}
 	
 	public String viewCommunity(){
@@ -44,7 +44,7 @@ public class CommunityController extends AbstractSessionController {
 		if (this.community == null)
 			return "/home";
 		else
-			return "/community";
+			return "/community.xhtml";
 	}
 	
 	public String createCommunity(){
