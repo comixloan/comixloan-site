@@ -41,6 +41,11 @@ public class ComiXloanController extends AbstractSessionController{
 		}
 	}
 	
+	public String logout(){
+		this.setCurrentUser(null);
+		return "/index.xhtml";
+	}
+	
 	
 	/*
 	 * --------------------------------------
