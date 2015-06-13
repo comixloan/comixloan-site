@@ -37,6 +37,29 @@ Un esempio di questo plugin può essere visionato in [questa pagine](https://git
 
 Questo plugin per jQuery serve per risolvere un bug di JSF: l'action del commandButton o commandLink non funzionano dentro un un ui:repeat o un c:forEach.
 
+#### Come usarlo
+
+Al di fuori del ui:repeat o del c:forEach scrivere ad esempio:
+
+```xml
+<h:form id="action_select_user" class="formhide">
+    <h:commandButton action="#{loanController.selectUser}"
+    value="Seleziona">
+    </h:commandButton>
+</h:form>
+```
+
+Sostituire il commmandButton che non funziona con questo codice:
+
+```xml
+<button onclick='$("#action_select_user").action({idUser: #{user.id}});'>Seleziona</button>
+```
+
+Nel caso di un commandLink può essere sostituito con questo codice:
+
+```xml
+<a href = "#" onclick='$("#action_select_user").action({idUser: #{user.id}});'>Seleziona</a>
+```
 
 ## Link Utili
 
