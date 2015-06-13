@@ -17,14 +17,14 @@ Creare in WebContent/WEB-INF questo file resources.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <tomee>
-<Resource id="comiCloan Database" type="DataSource">
-JdbcDriver  	 	org.postgresql.Driver
-JdbcUrl  			jdbc:postgresql://localhost/products
-UserName     		postgres
-Password     		siw
-JtaManaged      	true
-DefaultAutoCommit   false
-</Resource>
+    <Resource id="comiCloan Database" type="DataSource">
+        JdbcDriver  	 	org.postgresql.Driver
+        JdbcUrl  			jdbc:postgresql://localhost/products
+        UserName     		postgres
+        Password     		siw
+        JtaManaged      	true
+        DefaultAutoCommit   false
+    </Resource>
 </tomee>
 
 ```

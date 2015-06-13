@@ -12,30 +12,39 @@
 		<ui:define name="content">
 			<h1>Loan</h1>
 
+			<h:form id="action_giveback" class="formhide">
+				<h:commandButton action="#{loanController.giveBack}"
+					value="Segna come restituito">
+				</h:commandButton>
+			</h:form>
+
+			<h:form id="action_loadInformation" class="formhide">
+				<h:commandButton action="#{loanController.getLoanInformation}"
+					value="Informazioni">
+				</h:commandButton>
+			</h:form>
+
 			<table class="table table-hover">
-			<thead>
-				<tr>
-					<td>Utente</td>
-					<td>Data Prestito</td>
-					<td></td>
-				</tr></thead><tbody>
-				<c:forEach var="loan" items="#{loanController.userLoans}">
+				<thead>
 					<tr>
-						<td>${loan.user.userName}</td>
-						<td>${loan.startDate}</td>
-						<td><h:form>
-								<h:commandLink action="#{loanController.giveBack}"
-									value="Segna come restituito">
-									<f:param name="id" value="#{loan.id}" />
-								</h:commandLink>
-							</h:form> <h:form>
-								<h:commandLink action="#{loanController.getLoanInformation}"
-									value="Informazioni">
-									<f:param name="id" value="#{loan.id}" />
-								</h:commandLink>
-							</h:form></td>
+						<td>Utente</td>
+						<td>Data Prestito</td>
+						<td></td>
 					</tr>
-				</c:forEach></tbody>
+				</thead>
+				<tbody>
+					<c:forEach var="loan" items="#{loanController.userLoans}">
+						<tr>
+							<td>${loan.user.userName}</td>
+							<td>${loan.startDate}</td>
+							<td><a href="#"
+								onclick='$("#action_giveback").action({id: #{loan.id}});'>Segna
+									come restituito</a> <br /> 
+								<a href="#"
+								onclick='$("#action_loadInformation").action({id: #{loan.id}});'>Impormazioni</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 
 			<div>

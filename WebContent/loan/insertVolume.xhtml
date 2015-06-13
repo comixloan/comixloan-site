@@ -13,6 +13,13 @@
 			<h1>${loanController.currentLoan.id}</h1>
 			<div>
 				<h1>cosa c'è nello Zaino?</h1>
+
+				<h:form id="action_remove_volume" class = "formhide">
+					<h:commandButton value="rimuovi"
+						action="#{loanController.removeVolume}">
+					</h:commandButton>
+				</h:form>
+
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -27,12 +34,11 @@
 							<tr>
 								<td>${volume.serie.name}</td>
 								<td>${volume.number}</td>
-								<td><h:form>
-										<h:commandButton value="rimuovi"
-											action="#{loanController.removeVolume}">
-											<f:param name="idVolume" value="#{volume.id}" />
-										</h:commandButton>
-									</h:form></td>
+								<td>
+									<button onclick='$("#action_remove_volume").action({idVolume: #{volume.id}});'>
+										Rimuovi
+									</button>
+								</td>
 
 
 							</tr>

@@ -12,6 +12,12 @@
 		<ui:define name="content">
 			<h2>Storico Prestiti</h2>
 
+			<h:form id = "action_info" class = "formhide">
+				<h:commandButton action="#{historyLoanController.info}"
+					value="informazioni">
+				</h:commandButton>
+			</h:form>
+
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -28,12 +34,8 @@
 							<td>${hloan.user.userName}</td>
 							<td>${hloan.dateStart}</td>
 							<td>${hloan.dateEnd}</td>
-							<td><h:form>
-									<h:commandLink action="#{historyLoanController.info}"
-										value="informazioni">
-										<f:param name="id" value="#{hloan.id}" />
-									</h:commandLink>
-								</h:form></td>
+							<td><a href="#"
+								onclick='$("#action_info").action({id: #{hloan.id}});'>informazioni</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
