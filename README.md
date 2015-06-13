@@ -14,7 +14,7 @@ Altre specifiche saranno approfondite nel diagramma delle classi Software.
 
 Creare in WebContent/WEB-INF questo file resources.xml
 
-```xml
+``xml
 <?xml version="1.0" encoding="UTF-8"?>
 <tomee>
 <Resource id="comiCloan Database" type="DataSource">
@@ -27,7 +27,7 @@ DefaultAutoCommit   false
 </Resource>
 </tomee>
 
-```
+``
 
 ## Librerie usate
 
