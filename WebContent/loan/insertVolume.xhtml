@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+
+	<ui:composition template="/theme/base.xhtml">
+
+		<ui:define name="content">
+			<h1>${loanController.currentLoan.id}</h1>
+			<div>
+				<h1>cosa c'è nello Zaino?</h1>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<td>serie</td>
+							<td>n volume</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="volume"
+							items="#{loanController.currentLoan.volumes}">
+							<tr>
+								<td>${volume.serie.name}</td>
+								<td>${volume.number}</td>
+								<td><h:form>
+										<h:commandButton value="rimuovi"
+											action="#{loanController.removeVolume}">
+											<f:param name="idVolume" value="#{volume.id}" />
+										</h:commandButton>
+									</h:form></td>
+
+
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<h:form>
+					<h:commandLink action="#{loanController.listLoan}"
+						value="Conferma prestito" />
+				</h:form>
+			</div>
+			<div>
+				<h:form>
+
+					<h:inputText value="#{loanController.nameSerie}" />
+					<h:commandButton value="cerca"
+						action="#{loanController.searchSeries}" />
+				</h:form>
+			</div>
+
+			<div>
+				<h:form>
+					<c:forEach var="serie"
+						items="#{loanController.series2Volumes.entrySet()}">
+						<div>
+							<h4>${serie.key}</h4>
+							<c:forEach var="a" items="${serie.value}">
+								<p>
+									<input type="checkbox" name="checkBoxVolumesHTML[]"
+										value="${a}" /> ${a.number}
+								</p>
+							</c:forEach>
+						</div>
+					</c:forEach>
+					<h:commandButton value="aggiungi a zaino"
+						action="#{loanController.addVolume}" />
+				</h:form>
+			</div>
+		</ui:define>
+
+		<ui:define name="title">
+			Ciao
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

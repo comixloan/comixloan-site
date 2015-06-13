@@ -18,6 +18,8 @@
 <!-- Latest compiled and minified JavaScript -->
 <h:outputScript name="bootstrap.min.js" library="js"></h:outputScript>
 
+<h:outputScript name="jquery.action.js" library="js"></h:outputScript>
+
 </h:head>
 <h:body>
 	<div class="row">
@@ -34,18 +36,16 @@
 					</a>
 
 					<a 	
-						href= "./signin.jsp"
+						href= "./signin.xhtml"
 						class="btn btn-default btn-lg bn-color-red">
 						<span class="glyphicon glyphicon-tent"></span> Registrati
 					</a>
 				</h:panelGroup>
 
 				<h:panelGroup rendered="#{comixloanController.isLogged()}">
-					<a	
-						href=""
-						class="btn btn-default btn-lg bn-color-whiteblue">
-						<span class="glyphicon glyphicon-tent"></span> Esci
-					</a>
+					<h:form>
+						<h:commandLink action = "#{comixloanController.logout}" value="Esci" class="btn btn-default btn-lg bn-color-whiteblue" />
+					</h:form>
 				</h:panelGroup>
 			</div>
 			<div class="menu">

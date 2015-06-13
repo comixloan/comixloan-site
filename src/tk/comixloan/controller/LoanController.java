@@ -9,6 +9,8 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
@@ -21,6 +23,7 @@ import tk.comixloan.facade.SerieFacade;
 
 
 @ManagedBean(name = "loanController")
+@RequestScoped
 public class LoanController extends AbstractSessionController {
 	
 	@EJB
@@ -67,7 +70,7 @@ public class LoanController extends AbstractSessionController {
 	public String listLoan(){
 		long idUser=this.getCurrentUser().getId();
 		userLoans=loanFacade.listLoanUser(idUser);
-		return "/loan/list.jsp";
+		return "/loan/list.xhtml";
 	}
 
 
@@ -75,30 +78,30 @@ public class LoanController extends AbstractSessionController {
 		this.loanFacade.delete(new Long(idCurrentLoan), this.getCurrentUser().getId());
 		long idUser=this.getCurrentUser().getId();
 		userLoans=loanFacade.listLoanUser(idUser);
-		return "/loan/list.jsp";
+		return "/loan/list.xhtml";
 	}
 
 	public String getLoanInformation(){
 		currentLoan=this.loanFacade.find(new Long(idCurrentLoan));
 		System.out.println(currentLoan.getVolumes());
-		return "/loan/info";
+		return "/loan/info.xhtml";
 	}
 
 	public String showUser(){
 		Long idCurrentUser=new Long(this.getCurrentUser().getId());
 		possibleUser= communityFacade.findUserFromCommunities(idCurrentUser, username);
-		return "/loan/add";
+		return "/loan/add.xhtml";
 	}
 
 	public String selectUser(){
 		this.setCurrentLoan(loanFacade.create(new Date(), new Long(idUserToLoan), this.getCurrentUser().getId()));
-		return "/loan/insertVolume";
+		return "/loan/insertVolume.xhtml";
 	}
 	
 	public String removeVolume(){
 		this.loanFacade.removeVolume(this.currentLoan, new Long(idVolume));
 		this.initLoan();
-		return "/loan/insertVolme";
+		return "/loan/insertVolme.xhtml";
 	}
 	
 	public String addVolume(){
@@ -111,7 +114,7 @@ public class LoanController extends AbstractSessionController {
 			}
 			this.initLoan();
 		}
-		return "/loan/insertVolume";
+		return "/loan/insertVolume.xhtml";
 	}
 	
 	public String searchSeries(){
@@ -124,7 +127,7 @@ public class LoanController extends AbstractSessionController {
 			}
 		}
 		
-		return "/loan/inserVolume";
+		return "/loan/inserVolume.xhtml";
 	}
 
 

@@ -25,12 +25,12 @@ public class HistoryLoanController extends AbstractSessionController {
 	public String historyLoan(){
 		Long idUser = this.getCurrentUser().getId();
 		this.listHistoryLoans= historyLoanFacade.listHistoryLoanUser(idUser);
-		return "/loan/historyLoan";
+		return "/loan/historyLoan.xhtml";
 	}
 
 	public String info(){
 		this.currentHistoryLoan = this.historyLoanFacade.find(new Long(this.idHistoryLoan));
-		return "/loan/infoHistoryLoan";
+		return "/loan/infoHistoryLoan.xhtml";
 	}
 	
 	

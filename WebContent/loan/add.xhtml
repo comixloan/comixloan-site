@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+
+	<ui:composition template="/theme/base.xhtml">
+
+		<ui:define name="content">
+			<h2>Seleziona Utente</h2>
+
+			<h:form>
+				<div>
+					Username:
+					<h:inputText value="#{loanController.username}" />
+				</div>
+
+				<h:commandButton action="#{loanController.showUser}"
+					value="Cerca Utente" />
+			</h:form>
+
+			<h:form id="action_select_user" class="formhide">
+				<h:commandButton action="#{loanController.selectUser}"
+					value="Seleziona">
+				</h:commandButton>
+			</h:form>
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<td>Utente</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat var="user" value="#{loanController.possibleUser}">
+						<tr>
+							<td>${user.userName}</td>
+							<td>
+								<button
+									onclick='$("#action_select_user").action({idUser: #{user.id}});'>Seleziona</button>
+							</td>
+						</tr>
+					</ui:repeat>
+				</tbody>
+			</table>
+		</ui:define>
+
+		<ui:define name="title">
+			Creazione Prestito
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

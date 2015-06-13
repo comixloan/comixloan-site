@@ -10,32 +10,36 @@
 	<ui:composition template="/theme/base.xhtml">
 
 		<ui:define name="content">
-			<h2>lista volumi</h2>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<td>serie</td>
-						<td>n volume</td>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="volume" items="#{volumeController.listVolumes}">
-						<tr>
-							<td>${volume.serie.name}</td>
-							<td>${volume.number}</td>
-
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+			<h2>Informazioni</h2>
 
 			<div>
-				<a href="./searchedSeries.jsp">Aggiungi volume</a>
+				<b>Username: </b>
+				${historyLoanController.currentHistoryLoan.user.userName}
+			</div>
+
+			<div>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<td>Serie</td>
+							<td>Volume</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="v"
+							items="#{historyLoanController.currentHistoryLoan.volumes}">
+							<tr>
+								<td>${v.serie.name}</td>
+								<td>${v.number}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 		</ui:define>
 
 		<ui:define name="title">
-			Volumi posseduti
+			Ciao
 		</ui:define>
 
 	</ui:composition>

@@ -20,7 +20,7 @@ public class ComiXloanController extends AbstractSessionController{
 	
 	
 	public String home(){
-		return "/home";
+		return "/home.xhtml";
 	}
 
 	public String logIn() throws NoSuchAlgorithmException{
@@ -34,10 +34,10 @@ public class ComiXloanController extends AbstractSessionController{
 	
 	public String signIn() throws NoSuchAlgorithmException{
 		if (this.getUserFacade().existsUser(email, userName))
-			return "/signin";
+			return "/signin.xhtml";
 		else{
 			this.setCurrentUser(this.getUserFacade().createUser(name, surname, email, passWord, userName));
-			return "/home";
+			return "/home.xhtml";
 		}
 	}
 	

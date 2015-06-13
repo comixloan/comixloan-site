@@ -44,7 +44,10 @@ public abstract class AbstractSessionController {
 	}
 	
 	public void setCurrentUser(User currentUser) {
-		this.putSessionVariable("userCorrent", currentUser.getId());
+		if (currentUser != null)
+			this.putSessionVariable("userCorrent", currentUser.getId());
+		else
+			this.putSessionVariable("userCorrent", null);
 		this.currentUser = currentUser;
 	}
 	

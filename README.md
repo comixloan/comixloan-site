@@ -29,6 +29,11 @@ DefaultAutoCommit   false
 
 ```
 
+## Librerie usate
+
+### jQuery Action
+
+
 ## Link Utili
 
 DEMO: [http://comixloan.tk/](http://comixloan.tk/)
