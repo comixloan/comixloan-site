@@ -14,7 +14,7 @@ Altre specifiche saranno approfondite nel diagramma delle classi Software.
 
 Creare in WebContent/WEB-INF questo file resources.xml
 
-``xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <tomee>
 <Resource id="comiCloan Database" type="DataSource">
@@ -27,11 +27,15 @@ DefaultAutoCommit   false
 </Resource>
 </tomee>
 
-``
+```
 
-## Librerie usate
+## Librerie sviluppate ad hoc
 
 ### jQuery Action
+
+Un esempio di questo plugin può essere visionato in [questa pagine](https://github.com/comixloan/comixloan-site/blob/master/WebContent/loan/add.xhtml)
+
+Questo plugin per jQuery serve per risolvere un bug di JSF: l'action del commandButton o commandLink non funzionano dentro un un ui:repeat o un c:forEach.
 
 
 ## Link Utili
