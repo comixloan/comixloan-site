@@ -71,8 +71,5 @@ public class VolumeController extends AbstractSessionController {
 	}
 	public void setIdSerieCorrente(long idSerieCorrente) {
 		this.idSerieCorrente = idSerieCorrente;
-	}
-	
-	
-	
+	}	
 }

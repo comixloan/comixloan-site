@@ -39,8 +39,7 @@
 							<td>${loan.startDate}</td>
 							<td><a href="#"
 								onclick='$("#action_giveback").action({id: #{loan.id}});'>Segna
-									come restituito</a> <br /> 
-								<a href="#"
+									come restituito</a> <br /> <a href="#"
 								onclick='$("#action_loadInformation").action({id: #{loan.id}});'>Impormazioni</a></td>
 						</tr>
 					</c:forEach>
@@ -48,7 +47,7 @@
 			</table>
 
 			<div>
-				<a href="./add.xhtml">Crea nuovo prestito</a>
+				<h:link value="Crea nuovo prestito" outcome="/loan/add.xhtml" />
 			</div>
 		</ui:define>
 
