@@ -38,6 +38,7 @@
 .content {
 	padding-left: 15px;
 	padding-right: 15px;
+	overflow: scroll;
 }
 
 .content>* {
@@ -80,11 +81,6 @@
 	width: 310px;
 }
 
-.row {
-	background-image: url("#{resource['image/sfondoideale.png']}");
-	background-repeat: round;
-}
-
 .bn-color-yellow:hover {
 	background-color: rgb(255, 221, 0);
 	border-color: rgb(255, 221, 0);
@@ -118,12 +114,21 @@
 	height: 100%;
 	position: absolute;
 	width: 100%;
+	margin: 0px;
 }
 
 tr.border_bottom td {
 	border-bottom: 1pt solid black;
 }
 
-.list-group-title, .list-group-title:hover, .list-group-title:focus, .list-group-title:active, .list-group-title:visited{
+.list-group-title, .list-group-title:hover, .list-group-title:focus,
+	.list-group-title:active, .list-group-title:visited {
 	background-color: yellow !important;
+}
+
+body {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url("#{resource['image/sfondoideale.png']}");
+	overflow: hidden;
 }
