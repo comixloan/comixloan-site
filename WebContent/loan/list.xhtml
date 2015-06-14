@@ -37,10 +37,10 @@
 						<tr>
 							<td>${loan.user.userName}</td>
 							<td>${loan.startDate}</td>
-							<td><a href="#"
+							<td  align="right"><a href="#" class="btn btn-danger"
 								onclick='$("#action_giveback").action({id: #{loan.id}});'>Segna
-									come restituito</a> <br /> <a href="#"
-								onclick='$("#action_loadInformation").action({id: #{loan.id}});'>Impormazioni</a></td>
+									come restituito</a> <br></br><a href="#" class="btn btn-info"
+								onclick='$("#action_loadInformation").action({id: #{loan.id}});'>Informazioni</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

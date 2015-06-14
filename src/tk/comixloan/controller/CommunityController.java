@@ -44,7 +44,7 @@ public class CommunityController extends AbstractSessionController {
 		if (this.community == null)
 			return "/home";
 		else
-			return "/community.xhtml";
+			return "/community";
 	}
 	
 	public String createCommunity(){
