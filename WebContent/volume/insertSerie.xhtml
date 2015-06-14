@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+
+	<ui:composition template="/theme/base.xhtml">
+
+		<ui:define name="content">
+			<h2>Dati della serie</h2>
+
+			<h:form>
+				<div>
+					titolo serie:
+					<h:inputText value="#{serieController.name}" />
+				</div>
+				<div>
+					descrizione:
+					<h:inputText value="#{serieController.description}" />
+				</div>
+				<div>
+					editore:
+					<h:inputText value="#{serieController.editor}" />
+				</div>
+				<div>
+					autore:
+					<h:inputText value="#{serieController.author}" />
+				</div>
+				<div>
+					<h:commandButton value="aggiungi"
+						action="#{serieController.createSerie}" />
+				</div>
+
+			</h:form>
+		</ui:define>
+
+		<ui:define name="title">
+			Creazione Volume
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>
