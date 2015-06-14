@@ -3,21 +3,21 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-<title>ComiXloan</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />	
-<!-- Latest compiled and minified CSS -->
-<h:outputStylesheet name="bootstrap.css" library="css" />
+	<title>ComiXloan</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- Latest compiled and minified CSS -->
+	<h:outputStylesheet name="bootstrap.css" library="css" />
 
-<h:outputStylesheet name="main.css" library="css" />
+	<h:outputStylesheet name="main.css" library="css" />
 
-<h:outputScript name="jquery-1.11.3.min.js" library="js"></h:outputScript>
+	<h:outputScript name="jquery-1.11.3.min.js" library="js"></h:outputScript>
 
-<!-- Latest compiled and minified JavaScript -->
-<h:outputScript name="bootstrap.min.js" library="js"></h:outputScript>
+	<!-- Latest compiled and minified JavaScript -->
+	<h:outputScript name="bootstrap.min.js" library="js"></h:outputScript>
 
-<h:outputScript name="jquery.action.js" library="js"></h:outputScript>
+	<h:outputScript name="jquery.action.js" library="js"></h:outputScript>
 
 </h:head>
 <h:body>
@@ -25,66 +25,72 @@
 		<div class="col-md-4 text-center leftside">
 			<div class="logobottom">
 				<div class="userlogo">
-					<h:graphicImage library="image" name="user1.png"/>
+					<h:graphicImage library="image" name="user1.png" />
 				</div>
 				<h:panelGroup rendered="#{comixloanController.canLogin()}">
-					<a
-						href= "./login.xhtml"
+
+					<h:link outcome="/login.xhtml"
 						class="btn btn-default btn-lg bn-color-yellow">
 						<span class="glyphicon glyphicon-user"></span> Accedi
-					</a>
+					</h:link>
 
-					<a 	
-						href= "./signin.xhtml"
+					<h:link outcome="/signin.xhtml"
 						class="btn btn-default btn-lg bn-color-red">
 						<span class="glyphicon glyphicon-tent"></span> Registrati
-					</a>
+					</h:link>
 				</h:panelGroup>
 
 				<h:panelGroup rendered="#{comixloanController.isLogged()}">
 					<h:form>
-						<h:commandLink action = "#{comixloanController.logout}" value="Esci" class="btn btn-default btn-lg bn-color-whiteblue" />
+						<h:commandLink action="#{comixloanController.logout}" value="Esci"
+							class="btn btn-default btn-lg bn-color-whiteblue" />
 					</h:form>
 				</h:panelGroup>
 			</div>
 			<div class="menu">
 				<h:panelGroup rendered="#{comixloanController.isLogged()}">
 					<div class="btn-group-vertical" role="group" aria-label="...">
-						
-						
+
+
 						<h:form>
-						<h:commandLink  action="#{comixloanController.home}" value="Home"  class="btn btn-default btn-large btn-block" />
-						</h:form>
-						
-						<h:form>
-						<h:commandLink  action="#{communityController.listCommunity}" value="Comunità"  class="btn btn-default btn-large btn-block" />
-						</h:form>
-						
-						<h:form>
-						<h:commandLink  action="#{volumeController.listVolume}" value="Volumi"  class="btn btn-default btn-large btn-block" />
+							<h:commandLink action="#{comixloanController.home}" value="Home"
+								class="btn btn-default btn-large btn-block" />
 						</h:form>
 
-						
 						<h:form>
-						<h:commandLink   class="btn btn-default btn-large btn-block" action="#{loanController.listLoan}" value="Gestione prestiti"  />
+							<h:commandLink action="#{communityController.listCommunity}"
+								value="Comunità" class="btn btn-default btn-large btn-block" />
 						</h:form>
-						
-						
+
 						<h:form>
-						<h:commandLink class="btn btn-default btn-large btn-block"  action="#{historyLoanController.historyLoan}" value="Storico prestiti" />
+							<h:commandLink action="#{volumeController.listVolume}"
+								value="Volumi" class="btn btn-default btn-large btn-block" />
 						</h:form>
-					
+
+
+						<h:form>
+							<h:commandLink class="btn btn-default btn-large btn-block"
+								action="#{loanController.listLoan}" value="Gestione prestiti" />
+						</h:form>
+
+
+						<h:form>
+							<h:commandLink class="btn btn-default btn-large btn-block"
+								action="#{historyLoanController.historyLoan}"
+								value="Storico prestiti" />
+						</h:form>
+
 					</div>
 				</h:panelGroup>
 			</div>
 		</div>
 		<div class="col-md-8 body">
 			<div class="barretta">
-				<h:graphicImage library="image" name = "barretta.png"/>
+				<h:graphicImage library="image" name="barretta.png" />
 			</div>
 
 			<div class="logo">
-				<h:graphicImage library = "image" name = "logo2222.png"/>
+				<h:graphicImage library="image" name="logo2222.png" />
 			</div>
 
 			<div class="title text-center">
