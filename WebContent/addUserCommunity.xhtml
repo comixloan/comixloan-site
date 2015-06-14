@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+
+	<ui:composition template="/theme/base.xhtml">
+
+		<ui:define name="content">
+			<h:form>
+				<h2>cerca l'utente</h2>
+				<div>username:</div>
+				<div class="input-group">
+
+					<h:inputText value="#{communityController.username}" type="text"
+						class="form-control" placeholder="inserisci nick user" />
+					<span class="input-group-btn"> <h:commandButton
+							value="Aggiungi" action="#{communityController.addUser}"
+							class="btn btn-default" type="button">Aggiungi</h:commandButton>
+
+					</span>
+				</div>
+
+			</h:form>
+
+
+		</ui:define>
+
+		<ui:define name="title">
+			Aggiunta dell'utente alla Comunità
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

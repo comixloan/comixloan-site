@@ -13,25 +13,30 @@
 
 		<ui:define name="content">
 
-			<h:form>
 
-				<h1>${communityController.community.name}</h1>
-				<div> ${communityController.community.description} </div>
 
-				<ul>
+			<h1>${communityController.community.name}</h1>
+			<br />
+			<div>${communityController.community.description}</div>
+			<br />
+
+
+
+			<div class="list-group">
+				<a href="#" class="list-group-item active"  >Utenti Community</a>
 				<c:forEach var="users"
 					items="#{communityController.community.users}">
 
-					<li>#{users.userName}</li>
+					<a href="#" class="list-group-item">#{users.userName}</a>
 				</c:forEach>
 
-				</ul>
+			</div>
 
 
-
-				<h:commandLink action="addUserCommunity.jsp" value="Aggiungi Utente" />
-
-			</h:form>
+			<h:link class="btn btn-default" outcome="/addUserCommunity.xhtml"
+				value="Aggiungi utente">
+				<span class="glyphicon glyphicon-user" title="Aggiungi utente" />
+			</h:link>
 		</ui:define>
 
 		<ui:define name="title">
