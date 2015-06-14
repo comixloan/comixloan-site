@@ -10,18 +10,19 @@
 	<ui:composition template="/theme/base.xhtml">
 
 		<ui:define name="content">
-			<h1>${loanController.currentLoan.id}</h1>
+			<h1>Informazioni</h1>
 			<div>
-				<h1>cosa c'è nello Zaino?</h1>
+				<h3>Cosa c'è nello Zaino?</h3>
 
-				<h:form id="action_remove_volume" class = "formhide">
+				<h:form id="action_remove_volume" class="formhide">
 					<h:commandButton value="rimuovi"
 						action="#{loanController.removeVolume}">
 					</h:commandButton>
 				</h:form>
 
+
 				<table class="table table-hover">
-					<thead>
+					<thead class="list-group-title">
 						<tr>
 							<td>serie</td>
 							<td>n volume</td>
@@ -34,10 +35,10 @@
 							<tr>
 								<td>${volume.serie.name}</td>
 								<td>${volume.number}</td>
-								<td>
-									<button onclick='$("#action_remove_volume").action({idVolume: #{volume.id}});'>
-										Rimuovi
-									</button>
+								<td align="right">
+									<button class="btn btn-danger"
+										onclick='$("#action_remove_volume").action({idVolume: #{volume.id}});'>
+										Rimuovi</button>
 								</td>
 
 
@@ -46,41 +47,54 @@
 					</tbody>
 				</table>
 				<h:form>
-					<h:commandLink action="#{loanController.listLoan}"
-						value="Conferma prestito" />
+					<h:commandLink class="btn btn-warning"
+						action="#{loanController.listLoan}" value="Conferma prestito" />
 				</h:form>
 			</div>
-			<div>
-				<h:form>
+			<br></br>
+			<hr size="2px"></hr>
+			<br></br>
+			<h:form>
+				<div>
+					Nome Serie
+					<div class="input-group">
+						<h:inputText value="#{loanController.nameSerie}" type="text"
+							class="form-control" placeholder="inserisci nome Serie" />
+						<span class="input-group-btn"><h:commandButton
+								value="cerca" action="#{loanController.searchSeries}"
+								class="btn btn-default" /> </span>
+					</div>
+					<br></br>
+				</div>
 
-					<h:inputText value="#{loanController.nameSerie}" />
-					<h:commandButton value="cerca"
-						action="#{loanController.searchSeries}" />
-				</h:form>
-			</div>
+			</h:form>
 
 			<div>
 				<h:form>
 					<c:forEach var="serie"
 						items="#{loanController.series2Volumes.entrySet()}">
-						<div>
-							<h4>${serie.key}</h4>
+						<div class="list-group">
+							<a href="#" class="list-group-item list-group-title">${serie.key}</a>
+
 							<c:forEach var="a" items="${serie.value}">
-								<p>
-									<input type="checkbox" name="checkBoxVolumesHTML[]"
-										value="${a}" /> ${a.number}
-								</p>
+								<a href="#" class="list-group-item"><input
+									type="checkbox" align="right" class="checkbox-inline"
+									name="checkBoxVolumesHTML[]" value="${a}" > #{a.number}</input>
+
+								</a>
 							</c:forEach>
 						</div>
 					</c:forEach>
-					<h:commandButton value="aggiungi a zaino"
-						action="#{loanController.addVolume}" />
+					
+						 <h:commandButton
+								class="btn btn-info" value="aggiungi a zaino"
+								action="#{loanController.addVolume}" />
 				</h:form>
 			</div>
 		</ui:define>
 
 		<ui:define name="title">
-			Ciao
+			Gestione Prestito
 		</ui:define>
 
 	</ui:composition>

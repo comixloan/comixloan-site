@@ -19,7 +19,7 @@
 			</h:form>
 
 			<table class="table table-hover">
-				<thead>
+				<thead class="list-group-title">
 					<tr>
 						<td>prestato a</td>
 						<td>Data inizio prestito</td>
@@ -35,7 +35,7 @@
 							<td>${hloan.dateStart}</td>
 							<td>${hloan.dateEnd}</td>
 							<td><a href="#"
-								onclick='$("#action_info").action({id: #{hloan.id}});'>informazioni</a></td>
+								onclick='$("#action_info").action({id: #{hloan.id}});' class="btn btn-info" >informazioni</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

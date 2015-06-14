@@ -123,7 +123,8 @@ tr.border_bottom td {
 
 .list-group-title, .list-group-title:hover, .list-group-title:focus,
 	.list-group-title:active, .list-group-title:visited {
-	background-color: yellow !important;
+	background-color: #ffdd00 !important;
+	
 }
 
 body {

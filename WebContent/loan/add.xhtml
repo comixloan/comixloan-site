@@ -10,17 +10,20 @@
 
 		<ui:define name="content">
 			<h2>Seleziona Utente</h2>
-
+			<br></br>
+			<div>Cerca utente</div>
 			<h:form>
-				<div>
-					Username:
-					<h:inputText value="#{loanController.username}" />
+				<div class="input-group">
+					<h:inputText value="#{loanController.username}" type="text"
+						class="form-control" placeholder="inserisci nick user" />
+					<span class="input-group-btn"> <h:commandButton
+							value="Aggiungi" action="#{loanController.showUser}"
+							class="btn btn-default" />
+
+					</span>
 				</div>
-
-				<h:commandButton action="#{loanController.showUser}"
-					value="Cerca Utente" />
 			</h:form>
-
+			<br></br>
 			<h:form id="action_select_user" class="formhide">
 				<h:commandButton action="#{loanController.selectUser}"
 					value="Seleziona">
@@ -28,7 +31,7 @@
 			</h:form>
 
 			<table class="table table-hover">
-				<thead>
+				<thead class="list-group-title">
 					<tr>
 						<td>Utente</td>
 						<td></td>
@@ -38,8 +41,8 @@
 					<ui:repeat var="user" value="#{loanController.possibleUser}">
 						<tr>
 							<td>${user.userName}</td>
-							<td>
-								<button
+							<td align="right">
+								<button class="btn btn-info"
 									onclick='$("#action_select_user").action({idUser: #{user.id}});'>Seleziona</button>
 							</td>
 						</tr>

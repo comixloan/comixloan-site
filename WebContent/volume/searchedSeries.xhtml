@@ -12,6 +12,7 @@
 		<ui:define name="content">
 
 
+
 			<h:form id="action_selectSerie" class="formhide">
 				<h:commandButton action="#{serieController.selectSerie}"
 					value="Seleziona">
@@ -20,19 +21,30 @@
 
 			<h3>Cerca la serie</h3>
 			<h:form>
-				<div>
-					<h:inputText value="#{serieController.querySerie}" />
-					<h:commandButton action="#{serieController.searchSerie}"
-						value="cerca" />
+				<div>Nome Serie</div>
+				<div class="input-group">
+				
+					<h:inputText value="#{serieController.querySerie}" type="text"
+						class="form-control" placeholder="inserisci nome Serie" />
+					<span class="input-group-btn"><h:commandButton value="cerca"
+							action="#{serieController.searchSerie}" class="btn btn-default" />
+					</span> 
 				</div>
+				<br></br>
 			</h:form>
+
+
+
+
 			<div>
-				<table>
-					<tr>
-						<td>nome</td>
-						<td>autore</td>
-						<td>cliccherai qui</td>
-					</tr>
+				<table class="table table-hover">
+					<thead class="list-group-title">
+						<tr>
+							<td>nome</td>
+							<td>autore</td>
+							<td></td>
+						</tr>
+					</thead>
 					<c:forEach var="serie" items="#{serieController.listSeries}">
 						<tr>
 							<td>${serie.name}</td>
@@ -46,12 +58,14 @@
 			</div>
 			<div>
 				<h3>non hai trovato la serie?</h3>
-				<h:form>
-					<h:commandButton action="./insertSerie.jsp"
-						value="crea nuova serie" />
-				</h:form>
 			</div>
-			
+
+			<div>
+				<h:link value="crea Nuova Serie" outcome="/volume/insertSerie.xhtml"
+					class="btm btm-info" />
+			</div>
+
+
 		</ui:define>
 
 		<ui:define name="title">
