@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+
+	<ui:composition template="/theme/base.xhtml">
+
+		<ui:define name="content">
+
+
+			<h:form id="action_selectSerie" class="formhide">
+				<h:commandButton action="#{serieController.selectSerie}"
+					value="Seleziona">
+				</h:commandButton>
+			</h:form>
+
+			<h3>Cerca la serie</h3>
+			<h:form>
+				<div>
+					<h:inputText value="#{serieController.querySerie}" />
+					<h:commandButton action="#{serieController.searchSerie}"
+						value="cerca" />
+				</div>
+			</h:form>
+			<div>
+				<table>
+					<tr>
+						<td>nome</td>
+						<td>autore</td>
+						<td>cliccherai qui</td>
+					</tr>
+					<c:forEach var="serie" items="#{serieController.listSeries}">
+						<tr>
+							<td>${serie.name}</td>
+							<td>${serie.author}</td>
+
+							<td align="right"><a href="#" class="btn btn-info"
+								onclick='$("#action_selectSerie").action({id: #{serie.id}});'>Seleziona</a></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<div>
+				<h3>non hai trovato la serie?</h3>
+				<h:form>
+					<h:commandButton action="./insertSerie.jsp"
+						value="crea nuova serie" />
+				</h:form>
+			</div>
+			
+		</ui:define>
+
+		<ui:define name="title">
+			Aggiungi volume
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>
