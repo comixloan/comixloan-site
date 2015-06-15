@@ -33,9 +33,10 @@ public class ComiXloanController extends AbstractSessionController{
 	}
 	
 	public String signIn() throws NoSuchAlgorithmException{
-		if (this.getUserFacade().existsUser(email, userName))
+		if (this.getUserFacade().existsUser(email, userName)){
+			this.addErrors("Utente già esistente");
 			return "/signin.xhtml";
-		else{
+		}else{
 			this.setCurrentUser(this.getUserFacade().createUser(name, surname, email, passWord, userName));
 			return "/home.xhtml";
 		}

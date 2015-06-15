@@ -91,12 +91,9 @@
 				<h:graphicImage library="image" name="barretta.png" />
 			</div>
 
-
-
 			<div class="logo">
 				<div id="imagelogo"></div>
 			</div>
-
 
 			<div class="title text-center">
 				<h1>
@@ -105,6 +102,25 @@
 			</div>
 
 			<div class="content" id="autoscroll">
+				<div>
+					<h:panelGroup rendered="#{comixloanController.isError()}">
+						<div class="alert alert-danger" role="alert">
+							<h:panelGroup rendered="#{comixloanController.isSingleError()}">
+								<h:outputText value="#{comixloanController.getSingleError()}" />
+							</h:panelGroup>
+							
+							<h:panelGroup rendered="#{comixloanController.isMultiError()}">
+								<strong>Ci sono i seguenti errori</strong>
+								<ul>
+									<ui:repeat var="erros" value="#{comixloanController.errors}">
+										<li>${errors}</li>
+									</ui:repeat>
+								</ul>
+							</h:panelGroup>
+						</div>
+						<h:outputText value="#{comixloanController.emptyErrors()}" />
+					</h:panelGroup>
+				</div>
 				<ui:insert name="content">
 
 				</ui:insert>

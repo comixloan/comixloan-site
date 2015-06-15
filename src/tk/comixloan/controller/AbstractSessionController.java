@@ -1,5 +1,8 @@
 package tk.comixloan.controller;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
@@ -15,11 +18,20 @@ public abstract class AbstractSessionController {
 	@EJB
 	private UserFacade userFacade;
 	
+	public void initErrors(){
+		List<String> lista = new LinkedList<String>();
+		this.putSessionVariable("errors", lista);
+	}
+	
 	@PostConstruct
 	public void init(){
 		Long idUser = (Long) getSessionVariable("userCorrent");
 		if (idUser != null){
 			this.currentUser = this.userFacade.getUser(idUser);
+		}
+		
+		if (this.getSessionVariable("errors") == null){
+			this.initErrors();
 		}
 	}
 	
@@ -62,4 +74,40 @@ public abstract class AbstractSessionController {
 	public boolean canLogin(){
 		return !this.isLogged();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getErrors() {
+		return (List<String>) this.getSessionVariable("errors");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String getSingleError(){
+		return ((List<String>) this.getSessionVariable("errors")).get(0);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public boolean isSingleError(){
+		return ((List<String>) this.getSessionVariable("errors")).size() == 1;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public boolean isMultiError(){
+		return ((List<String>) this.getSessionVariable("errors")).size() > 1;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public boolean isError(){
+		return ((List<String>) this.getSessionVariable("errors")).size() >= 1;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void addErrors(String error){
+		((List<String>) this.getSessionVariable("errors")).add(error);
+	}
+	
+	public String emptyErrors(){
+		this.initErrors();
+		return "";
+	}
+	
 }
