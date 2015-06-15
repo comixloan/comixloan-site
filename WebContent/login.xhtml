@@ -9,15 +9,31 @@
 
 		<ui:define name="content">
 			<h2>Login</h2>
-			
+
 			<h:form>
-		    	<div>Email: <h:inputText value="#{comixloanController.email}"/></div>
-		    	<div>Password: <h:inputSecret value="#{comixloanController.passWord}"/></div>
-		    	<div><h:commandButton value="Login"  action="#{comixloanController.logIn}"/></div>
+
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">Email</span>
+
+					<h:inputText class="form-control"
+						value="#{comixloanController.email}" />
+				</div>
+
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">Password</span>
+
+					<h:inputSecret class="form-control"
+						value="#{comixloanController.passWord}" />
+				</div>
+				
+				<div class = "text-center">
+					<h:commandButton class = "btn btn-info btn-lg" value="Login"
+						action="#{comixloanController.logIn}" />
+				</div>
 			</h:form>
 		</ui:define>
-		
-		<ui:define name = "title">
+
+		<ui:define name="title">
 			Ciao
 		</ui:define>
 

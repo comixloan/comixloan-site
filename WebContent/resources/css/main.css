@@ -133,3 +133,7 @@ body {
 	background-image: url("#{resource['image/sfondoideale.png']}");
 	overflow: hidden;
 }
+
+.input-group{
+	margin-bottom: 10px;
+}
