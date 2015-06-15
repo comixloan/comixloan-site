@@ -11,19 +11,20 @@
 
 
 
-			<h2>Dati del volume</h2>
+			<h2>Inserisci i volumi che vuoi inserire</h2>
 
 			<h:form>
 
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"
-						style="min-width: 144px">ⓝ Numero Volume</span>
-					<h:inputText value="#{volumeController.number}"
+						style="min-width: 144px">ⓝ Intervallo es:1-10</span>
+					<h:inputText value="#{volumeController.numberOfVolume}"
 						class="form-control" aria-describedby="basic-addon1" />
 				</div>
+				
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"
-						style="min-width: 144px"> ◎ Prezzo</span>
+						style="min-width: 144px"> ◎ Prezzo Stanndard</span>
 					<h:inputText value="#{volumeController.price}" class="form-control"
 						aria-describedby="basic-addon1" />
 				</div>
@@ -35,8 +36,8 @@
 				</div>
 
 				<div>
-					<h:commandButton value="aggiungi" class="btm btm-danger btm-block"
-						action="#{volumeController.addVolume}" />
+					<h:commandButton value="aggiungi Lista" class="btm btm-danger btm-block"
+						action="#{volumeController.addVolumeList}" />
 			</div>
 				
 			</h:form>
@@ -45,7 +46,7 @@
 		</ui:define>
 
 		<ui:define name="title">
-			Creazione Volume
+			Creazione lista di Volumi
 		</ui:define>
 
 	</ui:composition>

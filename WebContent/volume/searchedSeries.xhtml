@@ -18,17 +18,23 @@
 					value="Seleziona">
 				</h:commandButton>
 			</h:form>
+			
+			<h:form id="action_selectSerieList" class="formhide">
+				<h:commandButton action="#{serieController.selectSerieForAddList}"
+					value="Seleziona">
+				</h:commandButton>
+			</h:form>
 
 			<h3>Cerca la serie</h3>
 			<h:form>
 				<div>Nome Serie</div>
 				<div class="input-group">
-				
+
 					<h:inputText value="#{serieController.querySerie}" type="text"
 						class="form-control" placeholder="inserisci nome Serie" />
 					<span class="input-group-btn"><h:commandButton value="cerca"
 							action="#{serieController.searchSerie}" class="btn btn-default" />
-					</span> 
+					</span>
 				</div>
 				<br></br>
 			</h:form>
@@ -43,6 +49,7 @@
 							<td>nome</td>
 							<td>autore</td>
 							<td></td>
+							<td></td>
 						</tr>
 					</thead>
 					<c:forEach var="serie" items="#{serieController.listSeries}">
@@ -51,7 +58,9 @@
 							<td>${serie.author}</td>
 
 							<td align="right"><a href="#" class="btn btn-info"
-								onclick='$("#action_selectSerie").action({id: #{serie.id}});'>Seleziona</a></td>
+								onclick='$("#action_selectSerie").action({id: #{serie.id}});'>Aggiungi volume</a></td>
+							<td align="right"><a href="#" class="btn btn-info"
+								onclick='$("#action_selectSerieList").action({id: #{serie.id}});'>Aggiungi più Volumi</a></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -61,8 +70,9 @@
 			</div>
 
 			<div>
-				<h:link value="crea Nuova Serie" outcome="/volume/insertSerie.xhtml"
-				 ><span class="btm btm-warning"></span></h:link>
+				<h:link value="crea Nuova Serie" outcome="/volume/insertSerie.xhtml">
+					<span class="btn btn-warning"></span>
+				</h:link>
 			</div>
 
 

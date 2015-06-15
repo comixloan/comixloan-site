@@ -35,6 +35,10 @@ public class SerieController extends AbstractSessionController{
 		return "/volume/insertVolume";
 	}
 	
+	public String selectSerieForAddList(){
+		this.putSessionVariable("serieID", new Long(this.serieCorrente));
+		return "/volume/insertListVolume";}
+	
 	public String createSerie(){
 		Serie s = this.serieFacade.createSerie(name, description, new Date(), editor, author);
 		
