@@ -16,25 +16,32 @@
 		<ui:define name="content">
 			<h2>creazione nuova Comunita</h2>
 
-			
 
-					<f:view>
-						<h:form>
-							<div>
-							Nome:
-							<h:inputText value="#{communityController.name}" />
-							</div>
-							<div>
-							Descrizione:
-							<h:inputText value="#{communityController.description}" />
-							</div>
-							<div>
-							<h:commandButton value="Crea"
-								action="#{communityController.createCommunity}" />
-							</div>
-						</h:form>
-					</f:view>
-			
+
+		
+				<h:form>
+
+
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"
+							style="min-width: 114px">✌ Nome</span>
+						<h:inputText value="#{communityController.name}"
+							class="form-control" aria-describedby="basic-addon1" />
+					</div>
+
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"
+							style="min-width: 114px">☁ Descrizione</span>
+						<h:inputText value="#{communityController.description}"
+							class="form-control" aria-describedby="basic-addon1" />
+					</div>
+					<div>
+						<h:commandButton value="Crea" class="btn btn-warning btn-block"
+							action="#{communityController.createCommunity}" />
+					</div>
+				</h:form>
+		
+
 		</ui:define>
 
 		<ui:define name="title">
