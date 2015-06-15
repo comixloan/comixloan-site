@@ -41,9 +41,10 @@ public class CommunityController extends AbstractSessionController {
 	public String viewCommunity(){
 		this.setCommunity(this.communityFacade.get(new Long(this.community_id)));
 		
-		if (this.community == null)
+		if (this.community == null){
+			this.addErrors("Comunità non trovata");
 			return "/home";
-		else
+		}else
 			return "/community";
 	}
 	
@@ -51,6 +52,7 @@ public class CommunityController extends AbstractSessionController {
 		this.setCommunity(this.communityFacade.create(this.getCurrentUser().getId(), name, description));
 		
 		if (this.community == null){
+			this.addErrors("Impossibile creare la comunità");
 			return "/home";
 		}else{
 			return "/community";
@@ -61,8 +63,10 @@ public class CommunityController extends AbstractSessionController {
 		if(this.communityFacade.addUser(this.community.getId(),this.username )){
 			this.initCommunity();
 			return "/community";
-		}else
-			return "/addUserCommunity";		
+		}else{
+			this.addErrors("Impossibile trovare l'utente");
+			return "/addUserCommunity";
+		}
 		
 	}
 	

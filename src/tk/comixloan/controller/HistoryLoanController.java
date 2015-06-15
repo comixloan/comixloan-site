@@ -30,6 +30,12 @@ public class HistoryLoanController extends AbstractSessionController {
 
 	public String info(){
 		this.currentHistoryLoan = this.historyLoanFacade.find(new Long(this.idHistoryLoan));
+		
+		if (this.currentHistoryLoan == null){
+			this.addErrors("Impossibile trovare il prestito passato");
+			return "/loan/historyLoan.xhtml";
+		}
+		
 		return "/loan/infoHistoryLoan.xhtml";
 	}
 	

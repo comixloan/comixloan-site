@@ -104,20 +104,25 @@ public class LoanFacade {
 		}
 	}
 
-	public void delete(Long id, Long idUser){
-		HistoryLoanFacade hlf = new HistoryLoanFacade(this.em);
-		HistoryLoan hl = hlf.create(id, idUser);
-		
-		List<Volume> l = this.getVolumes(id);
-		for(Volume v: l){
-			v.setLoan(null);
-			hl.getVolumes().add(v);
-			em.persist(v);
-			em.persist(hl);
+	public boolean delete(Long id, Long idUser){
+		try{
+			HistoryLoanFacade hlf = new HistoryLoanFacade(this.em);
+			HistoryLoan hl = hlf.create(id, idUser);
+			
+			List<Volume> l = this.getVolumes(id);
+			for(Volume v: l){
+				v.setLoan(null);
+				hl.getVolumes().add(v);
+				em.persist(v);
+				em.persist(hl);
+			}
+			
+			Loan loan = this.find(id);
+			em.remove(loan);
+			return true;
+		}catch(Exception ex){
+			return false;
 		}
-		
-		Loan loan = this.find(id);
-		em.remove(loan);
 		
 		
 	}

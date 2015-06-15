@@ -75,7 +75,12 @@ public class LoanController extends AbstractSessionController {
 
 
 	public String giveBack(){
-		this.loanFacade.delete(new Long(idCurrentLoan), this.getCurrentUser().getId());
+		boolean status = this.loanFacade.delete(new Long(idCurrentLoan), this.getCurrentUser().getId());
+		
+		if (!status){
+			this.addErrors("Non è stato possibile segnare il prestito restituito");
+		}
+		
 		long idUser=this.getCurrentUser().getId();
 		userLoans=loanFacade.listLoanUser(idUser);
 		return "/loan/list.xhtml";
@@ -83,6 +88,12 @@ public class LoanController extends AbstractSessionController {
 
 	public String getLoanInformation(){
 		currentLoan=this.loanFacade.find(new Long(idCurrentLoan));
+		
+		if (currentLoan == null){
+			this.addErrors("Impossibile trovare il loan");
+			return this.listLoan();
+		}
+		
 		System.out.println(currentLoan.getVolumes());
 		return "/loan/info.xhtml";
 	}

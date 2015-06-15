@@ -26,6 +26,7 @@ public class ComiXloanController extends AbstractSessionController{
 	public String logIn() throws NoSuchAlgorithmException{
 		this.setCurrentUser(this.getUserFacade().findByEmailPassword(email, passWord));
 		if(this.getCurrentUser() == null){
+			this.addErrors("Username o Password sbagliata");
 			return "/login.xhtml";	
 		}
 		else 
