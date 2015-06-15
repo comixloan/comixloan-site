@@ -60,9 +60,9 @@ public class CommunityController extends AbstractSessionController {
 	public String addUser(){
 		if(this.communityFacade.addUser(this.community.getId(),this.username )){
 			this.initCommunity();
-			return "community";
+			return "/community";
 		}else
-			return "addUserCommunity";		
+			return "/addUserCommunity";		
 		
 	}
 	
