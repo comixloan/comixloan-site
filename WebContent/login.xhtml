@@ -11,19 +11,26 @@
 			<h2>Login</h2>
 
 			<h:form>
-
+				<div>
+					<h:message for="usernameInputType"/>
+				</div>
+				
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1">Email</span>
 
-					<h:inputText class="form-control"
-						value="#{comixloanController.email}" />
+					<h:inputText id = "usernameInputType" class="form-control"
+						value="#{comixloanController.email}" required="true" requiredMessage="L'email è obbligatoria" />
+				</div>
+				
+				<div>
+					<h:message for="passwordInputType"/>
 				</div>
 
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1">Password</span>
 
-					<h:inputSecret class="form-control"
-						value="#{comixloanController.passWord}" />
+					<h:inputSecret id = "passwordInputType" class="form-control"
+						value="#{comixloanController.passWord}" required="true" requiredMessage="La password è obbligatoria" />
 				</div>
 				
 				<div class = "text-center">
