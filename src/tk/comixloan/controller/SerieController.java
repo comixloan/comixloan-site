@@ -22,10 +22,10 @@ public class SerieController extends AbstractSessionController{
 	private String description;
 	private String editor;
 	private String author;
-	
+
 	@ManagedProperty(value="#{param.id}")
 	private String serieCorrente;
-	
+
 	public String searchSerie(){
 		listSeries = serieFacade.find(querySerie);
 		return "/volume/searchedSeries";
@@ -34,14 +34,15 @@ public class SerieController extends AbstractSessionController{
 		this.putSessionVariable("serieID", new Long(this.serieCorrente));
 		return "/volume/insertVolume";
 	}
-	
+
 	public String selectSerieForAddList(){
 		this.putSessionVariable("serieID", new Long(this.serieCorrente));
-		return "/volume/insertListVolume";}
-	
+		return "/volume/insertListVolume";
+	}
+
 	public String createSerie(){
 		Serie s = this.serieFacade.createSerie(name, description, new Date(), editor, author);
-		
+
 		if (s == null)
 			return "/volume/insertSerie";
 		else{
@@ -49,7 +50,7 @@ public class SerieController extends AbstractSessionController{
 			return "/volume/insertVolume";
 		}
 	}
-	
+
 	/*
 	 * QUI INZIANO I GETTER ED I SETTER
 	 */
@@ -101,11 +102,11 @@ public class SerieController extends AbstractSessionController{
 	public void setAuthor(String autore) {
 		this.author = autore;
 	}
-	
+
 	public String getSerieCorrente() {
 		return serieCorrente;
 	}
-	
+
 	public void setSerieCorrente(String serieCorrente) {
 		this.serieCorrente = serieCorrente;
 	}

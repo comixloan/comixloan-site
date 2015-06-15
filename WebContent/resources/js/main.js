@@ -19,4 +19,6 @@ $(function() {
 	});
 	
 	logoChange();
+	
+	$('.collapse').collapse()
 });

@@ -1,8 +1,10 @@
 package tk.comixloan.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -14,18 +16,34 @@ import tk.comixloan.model.*;
 public class VolumeController extends AbstractSessionController {
 	@EJB
 	private VolumeFacade volumeFacade;
-	private List<Volume> listVolumes;
 	private long number;
 	private double price;
 	private String description;
 	private long idSerieCorrente;
 	private String numberOfVolume;
 	private List<Volume> listVolumeToAdd;
+	private Map<Serie, List<Volume>> serie2volume;
 
-
+	public void refreshSerieVolume(){
+		this.serie2volume = new HashMap<Serie, List<Volume>>();
+		List<Volume> listVolumes = this.volumeFacade.getVolumes(this.getCurrentUser().getId());
+		if (listVolumes != null){
+			for(Volume v: listVolumes){
+				Serie s = v.getSerie();
+				
+				List<Volume> lv = this.serie2volume.get(s);
+				if (lv == null){
+					lv = new LinkedList<Volume>();
+				}
+				lv.add(v);
+				this.serie2volume.put(s, lv);
+			}
+		}
+	}
+	
 	public String listVolume(){
-		listVolumes = this.volumeFacade.getVolumes(this.getCurrentUser().getId());
-		if (listVolumes == null) listVolumes = new LinkedList<Volume>();
+		this.refreshSerieVolume();
+		
 		return "/volume/list";
 	}
 
@@ -37,7 +55,7 @@ public class VolumeController extends AbstractSessionController {
 		if (v == null)
 			return "/volume/insertVolume";
 		else{
-			listVolumes = this.volumeFacade.getVolumes(this.getCurrentUser().getId());
+			this.refreshSerieVolume();
 			return "/volume/list";
 		}
 	}
@@ -55,7 +73,7 @@ public class VolumeController extends AbstractSessionController {
 			return "/volume/insertListVolume";
 		else{
 			this.volumeFacade.addListVolumes(this.getCurrentUser().getId(), this.listVolumeToAdd);
-			listVolumes = this.volumeFacade.getVolumes(this.getCurrentUser().getId());
+			this.refreshSerieVolume();
 			return "/volume/list";
 		}
 
@@ -82,13 +100,7 @@ public class VolumeController extends AbstractSessionController {
 	 * QUI INIZIANO I GETTER ED I SETTER
 	 * 
 	 */
-
-	public List<Volume> getListVolumes() {
-		return listVolumes;
-	}
-	public void setListVolume(List<Volume> listVolume) {
-		this.listVolumes = listVolume;
-	}
+	
 	public long getNumber() {
 		return number;
 	}
@@ -129,4 +141,12 @@ public class VolumeController extends AbstractSessionController {
 	public void setListVolumeToAdd(List<Volume> listVolumeToAdd) {
 		this.listVolumeToAdd = listVolumeToAdd;
 	}	
+	
+	public Map<Serie, List<Volume>> getSerie2volume() {
+		return serie2volume;
+	}
+	
+	public void setSerie2volume(Map<Serie, List<Volume>> serie2volume) {
+		this.serie2volume = serie2volume;
+	}
 }
