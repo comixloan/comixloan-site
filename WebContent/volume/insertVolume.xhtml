@@ -8,26 +8,40 @@
 	<ui:composition template="/theme/base.xhtml">
 
 		<ui:define name="content">
+
+
+
 			<h2>Dati del volume</h2>
 
 			<h:form>
-				<div>
-					Numero Volume:
-					<h:inputText value="#{volumeController.number}" />
+
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 144px">ⓝ Numero Volume</span>
+					<h:inputText value="#{volumeController.number}"
+						class="form-control" aria-describedby="basic-addon1" />
 				</div>
-				<div>
-					Prezzo:
-					<h:inputText value="#{volumeController.price}" />
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 144px"> ◎ Prezzo</span>
+					<h:inputText value="#{volumeController.price}" class="form-control"
+						aria-describedby="basic-addon1" />
 				</div>
-				<div>
-					Descrizione:
-					<h:inputText value="#{volumeController.description}" />
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 144px">☁ descrizione</span>
+					<h:inputText value="#{volumeController.description}"
+						class="form-control" aria-describedby="basic-addon1" />
 				</div>
+
 				<div>
-					<h:commandButton value="Salva volume"
+					<h:commandButton value="aggiungi" class="btn btn-danger btn-block"
 						action="#{volumeController.addVolume}" />
-				</div>
+			</div>
+				
 			</h:form>
+		
+			
 		</ui:define>
 
 		<ui:define name="title">

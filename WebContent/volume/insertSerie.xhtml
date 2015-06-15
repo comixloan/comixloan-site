@@ -10,25 +10,39 @@
 		<ui:define name="content">
 			<h2>Dati della serie</h2>
 
+
 			<h:form>
-				<div>
-					titolo serie:
-					<h:inputText value="#{serieController.name}" />
+
+
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 114px">✑ Titolo Serie</span>
+					<h:inputText value="#{serieController.name}" class="form-control"
+						aria-describedby="basic-addon1" />
 				</div>
-				<div>
-					descrizione:
-					<h:inputText value="#{serieController.description}" />
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 114px">✍ Descrizione</span>
+					<h:inputText value="#{serieController.description}"
+						class="form-control" aria-describedby="basic-addon1" />
 				</div>
-				<div>
-					editore:
-					<h:inputText value="#{serieController.editor}" />
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 114px">⌨ Editore</span>
+					<h:inputText value="#{serieController.editor}" class="form-control"
+						aria-describedby="basic-addon1" />
 				</div>
-				<div>
-					autore:
-					<h:inputText value="#{serieController.author}" />
+
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 114px">✒ Autore</span>
+					<h:inputText value="#{serieController.author}" class="form-control"
+						aria-describedby="basic-addon1" />
 				</div>
+
+
 				<div>
-					<h:commandButton value="aggiungi"
+					<h:commandButton value="aggiungi" class="btn btn-warning btn-block"
 						action="#{serieController.createSerie}" />
 				</div>
 
