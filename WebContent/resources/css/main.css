@@ -66,13 +66,15 @@
 	margin-right: auto;
 }
 
-.logo>img {
+.logo>div {
 	position: absolute;
 	z-index: 2;
 	display: block;
 	width: 12em;
+	height: 12em;
+	background-repeat: no-repeat;
+	background-size: contain;
 }
-
 
 .menu {
 	margin-top: 14em;
@@ -134,6 +136,18 @@ body {
 	overflow: hidden;
 }
 
-.input-group{
+.input-group {
 	margin-bottom: 10px;
+}
+
+.logos-0 {
+	background-image: url("#{resource['image/logo2222.png']}");
+}
+
+.logos-1 {
+	background-image: url("#{resource['image/logo22223.png']}");
+}
+
+.logos-2 {
+	background-image: url("#{resource['image/logo22224.png']}");
 }
