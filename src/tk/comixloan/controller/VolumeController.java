@@ -45,31 +45,31 @@ public class VolumeController extends AbstractSessionController {
 
 	public String addVolumeList(){
 		Long idSerie = (Long) this.getSessionVariable("serieID");
-		
+
 		int[] numberArray = this.toNumberArray(this.numberOfVolume);
 		this.listVolumeToAdd= this.volumeFacade.createVolumesList(numberArray, price, description, idSerie,this.getCurrentUser().getId());
-				
+
 		if (listVolumeToAdd == null)
-		return "/volume/insertVolume";
-	else{
-		this.volumeFacade.addListVolumes(this.getCurrentUser().getId(), this.listVolumeToAdd);
-		listVolumes = this.volumeFacade.getVolumes(this.getCurrentUser().getId());
-		return "/volume/list";
-	}
+			return "/volume/insertListVolume";
+		else{
+			this.volumeFacade.addListVolumes(this.getCurrentUser().getId(), this.listVolumeToAdd);
+			listVolumes = this.volumeFacade.getVolumes(this.getCurrentUser().getId());
+			return "/volume/list";
+		}
 
 	}
 
 	private int[] toNumberArray(String numberOfVolume2) {
-		String[] numeri=numberOfVolume2.split("-") ;
+		String[] numeri=numberOfVolume2.split("-");
 		int min= new Integer(numeri[0]).intValue();
 		int max=new Integer(numeri[1]).intValue();
-		int dimensione=max-min;
+		int dimensione=max-min + 1;
 		int[] numberArray = new int[dimensione];
 		for(int i=0; i<dimensione; i++){
 			numberArray[i]=min+i;
 		}
 		return numberArray;
-		
+
 	}
 
 	/*
