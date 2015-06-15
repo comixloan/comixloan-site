@@ -2,7 +2,8 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:body>
 
 	<ui:composition template="/theme/base.xhtml">
@@ -12,14 +13,19 @@
 
 
 			<h:form>
-
-
+				<div>
+					<h:message for="nameSerieInputType"></h:message>
+				</div>
 				<div class="input-group">
+
 					<span class="input-group-addon" id="basic-addon1"
 						style="min-width: 114px">✑ Titolo Serie</span>
-					<h:inputText value="#{serieController.name}" class="form-control"
+					<h:inputText value="#{serieController.name}"
+						id="nameSerieInputType" class="form-control" required="true"
+						requiredMessage="devi inserire un titolo"
 						aria-describedby="basic-addon1" />
 				</div>
+
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"
 						style="min-width: 114px">✍ Descrizione</span>
@@ -33,11 +39,16 @@
 						aria-describedby="basic-addon1" />
 				</div>
 
+				<div>
+					<h:message for="autorSerieInputType"></h:message>
+				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"
 						style="min-width: 114px">✒ Autore</span>
-					<h:inputText value="#{serieController.author}" class="form-control"
-						aria-describedby="basic-addon1" />
+					<h:inputText id="autorSerieInputType"
+						value="#{serieController.author}" class="form-control"
+						aria-describedby="basic-addon1" required="true"
+						requiredMessage="devi inserire un autore" />
 				</div>
 
 

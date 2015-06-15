@@ -2,7 +2,8 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:body>
 
 	<ui:composition template="/theme/base.xhtml">
@@ -14,19 +15,33 @@
 			<h2>Inserisci i volumi che vuoi inserire</h2>
 
 			<h:form>
-
+				<div>
+					<h:message for="intervalInputType"></h:message>
+				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"
 						style="min-width: 150px">ⓝ Intervallo es:1-10</span>
-					<h:inputText value="#{volumeController.numberOfVolume}"
-						class="form-control" aria-describedby="basic-addon1" />
+					<h:inputText id="intervalInputType"
+						value="#{volumeController.numberOfVolume}" required="true"
+						requiredMessage="inserisci l'intervallo" class="form-control"
+						validatorMessage="L'intervallo non rispetta la segnatura"
+						aria-describedby="basic-addon1">
+						<f:validateRegex pattern="[1234567890]+-[1234567890]+"></f:validateRegex>
+					</h:inputText>
 				</div>
-				
+				<div>
+					<h:message for="moneyInputType"></h:message>
+				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"
 						style="min-width: 150px"> ◎ Prezzo Stanndard</span>
-					<h:inputText value="#{volumeController.price}" class="form-control"
-						aria-describedby="basic-addon1" />
+					<h:inputText id="moneyInputType" value="#{volumeController.price}"
+						class="form-control" required="true"
+						validatorMessage="ti piacerebbe essere pagato per comprare eh!?"
+						requiredMessage="Inserisci il costo"
+						aria-describedby="basic-addon1">
+						<f:validateDoubleRange minimum="0.0"></f:validateDoubleRange>
+					</h:inputText>
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" id="basic-addon1"
@@ -36,13 +51,14 @@
 				</div>
 
 				<div>
-					<h:commandButton value="aggiungi Lista" class="btm btm-danger btm-block"
+					<h:commandButton value="aggiungi Lista"
+						class="btn btn-danger btn-block"
 						action="#{volumeController.addVolumeList}" />
-			</div>
-				
+				</div>
+
 			</h:form>
-		
-			
+
+
 		</ui:define>
 
 		<ui:define name="title">

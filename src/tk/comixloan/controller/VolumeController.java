@@ -47,6 +47,8 @@ public class VolumeController extends AbstractSessionController {
 		Long idSerie = (Long) this.getSessionVariable("serieID");
 
 		int[] numberArray = this.toNumberArray(this.numberOfVolume);
+		if(numberArray==null)
+			return "/volume/insertListVolume"; 
 		this.listVolumeToAdd= this.volumeFacade.createVolumesList(numberArray, price, description, idSerie,this.getCurrentUser().getId());
 
 		if (listVolumeToAdd == null)
@@ -63,6 +65,10 @@ public class VolumeController extends AbstractSessionController {
 		String[] numeri=numberOfVolume2.split("-");
 		int min= new Integer(numeri[0]).intValue();
 		int max=new Integer(numeri[1]).intValue();
+		if(min>max){
+			this.addErrors("intervallo senza senso!");
+			return null;
+		}
 		int dimensione=max-min + 1;
 		int[] numberArray = new int[dimensione];
 		for(int i=0; i<dimensione; i++){

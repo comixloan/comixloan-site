@@ -18,29 +18,33 @@
 
 
 
-		
-				<h:form>
 
+			<h:form>
 
-					<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"
-							style="min-width: 114px">✌ Nome</span>
-						<h:inputText value="#{communityController.name}"
-							class="form-control" aria-describedby="basic-addon1" />
-					</div>
+				<div>
+					<h:message for="nameCommunityInputType"></h:message>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 114px">✌ Nome</span>
+					<h:inputText id="nameCommunityInputType"
+						value="#{communityController.name}" required="true"
+						requiredMessage="E' obligatorio inserire un nome"
+						class="form-control" aria-describedby="basic-addon1" />
+				</div>
 
-					<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"
-							style="min-width: 114px">☁ Descrizione</span>
-						<h:inputText value="#{communityController.description}"
-							class="form-control" aria-describedby="basic-addon1" />
-					</div>
-					<div>
-						<h:commandButton value="Crea" class="btn btn-warning btn-block"
-							action="#{communityController.createCommunity}" />
-					</div>
-				</h:form>
-		
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 114px">☁ Descrizione</span>
+					<h:inputText value="#{communityController.description}"
+						class="form-control" aria-describedby="basic-addon1" />
+				</div>
+				<div>
+					<h:commandButton value="Crea" class="btn btn-warning btn-block"
+						action="#{communityController.createCommunity}" />
+				</div>
+			</h:form>
+
 
 		</ui:define>
 
