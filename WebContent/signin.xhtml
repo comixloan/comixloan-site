@@ -2,7 +2,8 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:body>
 
 	<ui:composition template="/theme/base.xhtml">
@@ -13,38 +14,68 @@
 			<h:form>
 
 
-
-				<div class="input-group">
-					<span class="input-group-addon" id="basic-addon1" style="min-width: 100px">✉ email</span>
-					<h:inputText value="#{comixloanController.email}"
-						class="form-control" aria-describedby="basic-addon1" />
+				<div>
+					<h:message for="mailInputType"></h:message>
 				</div>
 
 				<div class="input-group">
-					<span class="input-group-addon" id="basic-addon1" style="min-width: 100px">☥ password</span>
-					<h:inputSecret value="#{comixloanController.passWord}"
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 100px">✉ email</span>
+					<h:inputText id="mailInputType"
+						value="#{comixloanController.email}" required="true"
+						requiredMessage="inserisci un indirizzo mail"
+						validatorMessage="non è un indirizzo mail" class="form-control"
+						aria-describedby="basic-addon1">
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</h:inputText>
+				</div>
+				<div>
+					<h:message for="passInputType"></h:message>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 100px">☥ password</span>
+					<h:inputSecret id="passInputType"
+						value="#{comixloanController.passWord}" required="true"
+						requiredMessage="imposta una password" class="form-control"
+						aria-describedby="basic-addon1" />
+				</div>
+				<div>
+					<h:message for="userInputType"></h:message>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 100px">☻ username</span>
+					<h:inputText id="userInputType"
+						value="#{comixloanController.userName}" required="true"
+						requiredMessage="scegli un nickname" class="form-control"
+						aria-describedby="basic-addon1" />
+				</div>
+
+				<div>
+					<h:message for="nameInputType"></h:message>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 100px">☺ nome</span>
+					<h:inputText id="nameInputType" value="#{comixloanController.name}"
+						required="true" requiredMessage="Inserisci il tuo nome"
 						class="form-control" aria-describedby="basic-addon1" />
 				</div>
 
-				<div class="input-group">
-					<span class="input-group-addon" id="basic-addon1" style="min-width: 100px">☻ username</span>
-					<h:inputText value="#{comixloanController.userName}"
-						class="form-control" aria-describedby="basic-addon1" />
+
+				<div>
+					<h:message for="surnameInputType"></h:message>
 				</div>
 
-
 				<div class="input-group">
-					<span class="input-group-addon" id="basic-addon1" style="min-width: 100px">☺ nome</span>
-					<h:inputText value="#{comixloanController.name}"
-						class="form-control" aria-describedby="basic-addon1" />
-				</div>
-
-
-
-				<div class="input-group">
-					<span class="input-group-addon" id="basic-addon1" style="min-width: 100px" >☺ Cognome</span>
-					<h:inputText value="#{comixloanController.surname}"
-						class="form-control" aria-describedby="basic-addon1" />
+					<span class="input-group-addon" id="basic-addon1"
+						style="min-width: 100px">☺ Cognome</span>
+					<h:inputText id="surnameInputType"
+						value="#{comixloanController.surname}" required="true"
+						requiredMessage="Inserisci il tuo cognome" class="form-control"
+						aria-describedby="basic-addon1" />
 				</div>
 				<br></br>
 				<h:commandButton value="Registra" class="btn btn-warning btn-block"
