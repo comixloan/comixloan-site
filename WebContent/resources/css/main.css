@@ -36,7 +36,7 @@
 }
 
 .content {
-	padding-left: 15px;
+	padding-left: 40px;
 	padding-right: 15px;
 	overflow: scroll;
 }
@@ -106,7 +106,7 @@
 }
 
 .barretta {
-	margin-left: -50px;
+	margin-left: -25px;
 	margin-right: auto;
 	width: 50px;
 }
