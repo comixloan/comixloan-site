@@ -11,26 +11,50 @@
 
 		<ui:define name="content">
 			<h2>lista volumi</h2>
-			<table class="table table-hover">
-				<thead class="list-group-title">
-					<tr>
-						<td>serie</td>
-						<td>n volume</td>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="volume" items="#{volumeController.listVolumes}">
-						<tr>
-							<td>${volume.serie.name}</td>
-							<td>${volume.number}</td>
 
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+			<div class="panel-group" id="accordion" role="tablist"
+				aria-multiselectable="true">
+
+				<c:forEach var="volumi" varStatus="status"
+					items="#{volumeController.serie2volume.entrySet()}">
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="heading-${status.index}">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapse-${status.index}" aria-expanded="false"
+									aria-controls="collapse-${status.index}"> ${volumi.key.name} </a>
+							</h4>
+						</div>
+						<div id="collapse-${status.index}" class="panel-collapse collapse in"
+							role="tabpanel" aria-labelledby="heading-${status.index}">
+							<div class="panel-body">
+								<table class="table table-hover">
+									<thead class="list-group-title">
+										<tr>
+											<td>Numero volume</td>
+											<td>Prezzo</td>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="volume" items="${volumi.value}">
+											<tr>
+												<td>${volume.number}</td>
+												<td>${volume.price}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+
+
+			</div>
 
 			<div>
-				<h:link  value="aggiungi volume" outcome="/volume/searchedSeries.xhtml" class="btn btn-warning" />
+				<h:link value="aggiungi volume"
+					outcome="/volume/searchedSeries.xhtml" class="btn btn-warning" />
 			</div>
 		</ui:define>
 
