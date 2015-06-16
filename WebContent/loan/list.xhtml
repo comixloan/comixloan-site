@@ -30,6 +30,7 @@
 						<td>Utente</td>
 						<td>Data Prestito</td>
 						<td></td>
+						<td></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -37,17 +38,19 @@
 						<tr>
 							<td>${loan.user.userName}</td>
 							<td>${loan.startDate}</td>
-							<td  align="right"><a href="#" class="btn btn-danger"
-								onclick='$("#action_giveback").action({id: #{loan.id}});'>Segna
-									come restituito</a> <br></br><a href="#" class="btn btn-info"
+							<td align="right"><a href="#" class="btn btn-info"
 								onclick='$("#action_loadInformation").action({id: #{loan.id}});'>Informazioni</a></td>
+							<td align="right"><a href="#" class="btn btn-danger"
+								onclick='$("#action_giveback").action({id: #{loan.id}});'>Segna
+									come restituito</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 
 			<div>
-				<h:link class="btn btn-warning" value="Crea nuovo prestito" outcome="/loan/add.xhtml" />
+				<h:link class="btn btn-warning" value="Crea nuovo prestito"
+					outcome="/loan/add.xhtml" />
 			</div>
 		</ui:define>
 

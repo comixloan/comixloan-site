@@ -22,11 +22,13 @@
 							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#accordion"
 									href="#collapse-${status.index}" aria-expanded="false"
-									aria-controls="collapse-${status.index}"> ${volumi.key.name} </a>
+									aria-controls="collapse-${status.index}">
+									${volumi.key.name} </a>
 							</h4>
 						</div>
-						<div id="collapse-${status.index}" class="panel-collapse collapse in"
-							role="tabpanel" aria-labelledby="heading-${status.index}">
+						<div id="collapse-${status.index}"
+							class="panel-collapse collapse in" role="tabpanel"
+							aria-labelledby="heading-${status.index}">
 							<div class="panel-body">
 								<table class="table table-hover">
 									<thead class="list-group-title">
@@ -50,6 +52,14 @@
 				</c:forEach>
 
 
+			</div>
+			<div>
+				<p class="bg-info bg-lg">
+					fumetti posseduti: #{volumeController.numberOfComix}<br></br>
+				</p>
+				<p class="bg-danger bg-lg">
+					valore totale #{volumeController.valueOfComix} €<br></br>
+				</p>
 			</div>
 
 			<div>

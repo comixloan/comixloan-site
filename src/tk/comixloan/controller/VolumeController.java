@@ -23,14 +23,18 @@ public class VolumeController extends AbstractSessionController {
 	private String numberOfVolume;
 	private List<Volume> listVolumeToAdd;
 	private Map<Serie, List<Volume>> serie2volume;
+	private Long numberOfComix;
+	private Double valueOfComix;
 
 	public void refreshSerieVolume(){
 		this.serie2volume = new HashMap<Serie, List<Volume>>();
 		List<Volume> listVolumes = this.volumeFacade.getVolumes(this.getCurrentUser().getId());
+		numberOfComix=new Long(listVolumes.size());
+		valueOfComix=0.0;
 		if (listVolumes != null){
 			for(Volume v: listVolumes){
 				Serie s = v.getSerie();
-				
+				valueOfComix+=v.getPrice();
 				List<Volume> lv = this.serie2volume.get(s);
 				if (lv == null){
 					lv = new LinkedList<Volume>();
@@ -148,5 +152,21 @@ public class VolumeController extends AbstractSessionController {
 	
 	public void setSerie2volume(Map<Serie, List<Volume>> serie2volume) {
 		this.serie2volume = serie2volume;
+	}
+
+	public Long getNumberOfComix() {
+		return numberOfComix;
+	}
+
+	public void setNumberOfComix(Long numberOfComix) {
+		this.numberOfComix = numberOfComix;
+	}
+
+	public Double getValueOfComix() {
+		return valueOfComix;
+	}
+
+	public void setValueOfComix(Double valueOfComix) {
+		this.valueOfComix = valueOfComix;
 	}
 }
