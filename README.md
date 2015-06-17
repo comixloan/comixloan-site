@@ -10,6 +10,14 @@ Il sistema prevede che un utente, una volta acceduto possa:
 
 Altre specifiche saranno approfondite nel diagramma delle classi Software.
 
+## DEMO
+
+Una volta caricato il [database](https://github.com/comixloan/comixloan-site/blob/master/database.sql) è possibile testarlo con le credenziali:
+
+**Username**: demo
+
+**Password**: 20
+
 ## Configurazione Database
 
 Creare in WebContent/WEB-INF questo file resources.xml
@@ -33,7 +41,7 @@ Creare in WebContent/WEB-INF questo file resources.xml
 
 ### jQuery Action
 
-Un esempio di questo plugin può essere visionato in [questa pagine](https://github.com/comixloan/comixloan-site/blob/master/WebContent/loan/add.xhtml)
+Un esempio di questo plugin può essere visionato in [questa pagina](https://github.com/comixloan/comixloan-site/blob/master/WebContent/loan/add.xhtml)
 
 Questo plugin per jQuery serve per risolvere un bug di JSF: l'action del commandButton o commandLink non funzionano dentro un un ui:repeat o un c:forEach.
 
@@ -63,7 +71,7 @@ Nel caso di un commandLink può essere sostituito con questo codice:
 
 ## Licenza
 
-La licenza di questo progettto può essere trovata a [https://github.com/comixloan/comixloan-site/blob/master/LICENCE.md](questa pagina)
+La licenza di questo progettto può essere trovata a [questa pagine](https://github.com/comixloan/comixloan-site/blob/master/LICENCE.md)
 
 ## Link Utili
 

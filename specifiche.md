@@ -40,6 +40,10 @@ L’Utente sceglie di creare un nuovo prestito. Il sistema visualizza solo gli u
 
 L’utente sceglie di visualizzare i prestiti in corso e segna come restituito il prestito che si è concluso. Da questo momento il prestito è concluso e quindi il sistema lo registra nello Storico prestiti.
 
-## UC9: Log-out dell'utente
+## UC9: Visualizzazione Storico Prestiti
+
+L’utente sceglie di visualizzare tutti i prestiti che ha registrato. Il sistema visualizza lo storico dei prestiti. L’utente può selezionare un prestito passato per visualizzarne la durata, l’utente con cui è stato effettuato, ed i fumetti prestati. 
+
+## UC10: Log-out dell'utente
 
 L’utente sceglie di uscire dal sistema. Il sistema scollega l’utente.
