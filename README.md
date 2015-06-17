@@ -63,7 +63,7 @@ Nel caso di un commandLink può essere sostituito con questo codice:
 
 ## Licenza
 
-La licenza di questo progettto può essere trovata a [](questa pagina)
+La licenza di questo progettto può essere trovata a [https://github.com/comixloan/comixloan-site/blob/master/LICENCE.md](questa pagina)
 
 ## Link Utili
 
