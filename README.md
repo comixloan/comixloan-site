@@ -61,6 +61,10 @@ Nel caso di un commandLink può essere sostituito con questo codice:
 <a href = "#" onclick='$("#action_select_user").action({idUser: #{user.id}});'>Seleziona</a>
 ```
 
+## Licenza
+
+La licenza di questo progettto può essere trovata a [](questa pagina)
+
 ## Link Utili
 
 DEMO: [http://comixloan.tk/](http://comixloan.tk/)
